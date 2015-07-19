@@ -1,0 +1,171 @@
+body {
+  font-family: 'San Francisco Display';
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #111;
+  background-color: #EFF2ED;
+  margin:0px 0px 50px 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'San Francisco Text';
+  font-weight: 500;
+  color: #FFFFFF;
+  margin:10px 0px 0px 0px;
+}
+
+h1 span, h3 span {
+  background-color: #6E8258;
+  background: -webkit-linear-gradient(left, #4F5920 0%, #6D7C2D 100%);
+}
+
+b {
+  color: #2F3826;
+  font-weight: 600;
+}
+
+a {
+  color: #2F3826;
+  font-weight: 400;
+}
+
+.header {
+  height: 7px;
+  width: auto;
+  position: relative;
+  top: 0px;
+  background-image: url("bar.png");
+}
+
+.image {
+    position: absolute;
+    top: 130px;
+    left: 450px;
+}
+
+a:hover {
+  background-color: #6D7C2D;
+  color: #FFFFFF;
+}
+
+p {
+  margin: 5px;
+}
+::selection {
+background: #6E8258	;
+color: #FFFFFF;
+}
+
+.resume {
+  margin:70px 100px 0px 100px;
+}
+
+.skills {
+  margin:0px 0px 0px 100px;
+}
+
+.skills a {
+  color: #ECA93B;
+  font-weight: 400;
+}
+
+.skills a:hover {
+  background-color: #ECA93B;
+  color: #FFFFFF;
+}
+
+.skills .skills_content {
+  display: none;
+  padding : 5px;
+}
+.skills .skills_header { }
+
+.skills .skills_h3 span {
+  background: -webkit-linear-gradient(left, #BF8830 0%, #ECA93B 100%);
+}
+
+.skills ::selection {
+  background: #ECA93B	;
+  color: #FFFFFF;
+}
+
+.experience {
+  margin:0px 0px 0px 100px;
+}
+
+.experience a {
+  color: #003E56;
+  font-weight: 600;
+}
+
+.experience a:hover {
+  background-color: #003E56;
+  color: #FFFFFF;
+}
+
+.experience .experience_content {
+  display: none;
+  padding : 5px;
+}
+
+.experience .experience_h3 span {
+  background: -webkit-linear-gradient(left, #002533 0%, #003E56 100%);
+}
+
+.experience ::selection {
+  background: #003E56	;
+  color: #FFFFFF;
+}
+
+.experience .experience_header { }
+
+.portfolio {
+  margin:0px 0px 0px 100px;
+}
+
+.portfolio a {
+  color: #801B27;
+  font-weight: 600;
+}
+
+.portfolio a:hover {
+  background-color: #801B27;
+  color: #FFFFFF;
+}
+
+.portfolio .portfolio_content {
+  display: none;
+  padding : 5px;
+}
+
+.portfolio .portfolio_header { }
+
+.portfolio .portfolio_h3 span {
+  background: -webkit-linear-gradient(left, #801B27 0%, #B32536 100%);
+}
+
+.portfolio ::selection {
+  background: #B32536	;
+  color: #FFFFFF;
+}
+
+.education {
+  margin:0px 0px 0px 100px;
+}
+
+.education .education_content {
+  display: none;
+  padding : 5px;
+}
+
+.education .education_header { }
+
+.education .education_h3 span {
+  background: -webkit-linear-gradient(left, #C30083 0%, #92256E 100%);
+}
+
+.education ::selection {
+  background: #92256E	;
+  color: #FFFFFF;
+}
