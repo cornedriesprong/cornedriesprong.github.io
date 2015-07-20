@@ -1,6 +1,15 @@
+/*@font-face {
+    font-family: 'San Francisco Display';
+    src: url('SanFranciscoDisplay-Regular.otf');
+}
+
+@font-face {
+    font-family: 'San Francisco Text';
+    src: url('SanFranciscoText-Regular.otf');
+}*/
+
 body {
   font-family: 'San Francisco Display';
-  font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
   color: #111;
@@ -31,7 +40,7 @@ a {
 }
 
 .header {
-  height: 7px;
+  height: 2px;
   width: auto;
   position: relative;
   top: 0px;
@@ -50,6 +59,7 @@ a:hover {
 }
 
 p {
+  font-size: 14px;
   margin: 5px;
 }
 ::selection {
