@@ -35,7 +35,7 @@ $(document).ready(function(){
     $content = $header.next();
     $content.slideToggle(300, function () {
         $header.html(function () {
-            return $content.is(":visible") ? "<h3 class='portfolio_h3'><span>&nbsp; portfolio <i class='fa fa-angle-up'></i> &nbsp;</span></h3>" : "<h3 class='portfolio_h3'><span>&nbsp; portfolio <i class='fa fa-angle-down'></i> &nbsp;</span></h3>";
+            return $content.is(":visible") ? "<h3 class='portfolio_h3'><span>&nbsp; work <i class='fa fa-angle-up'></i> &nbsp;</span></h3>" : "<h3 class='portfolio_h3'><span>&nbsp; work <i class='fa fa-angle-down'></i> &nbsp;</span></h3>";
         });
     });
   });
