@@ -16,7 +16,6 @@
 body {
   font-family: 'San Francisco Display';
   line-height: 1.5;
-  font-weight: 500;
   color: #111;
   background-color: #EFF2ED;
   margin:0px 0px 50px 0px;
@@ -24,7 +23,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'San Francisco Text';
-  font-weight: 500;
   color: #FFFFFF;
   margin:10px 0px 0px 0px;
 }
@@ -37,12 +35,10 @@ h1 span, h3 span {
 b {
   font-family: 'San Francisco Display Bold';
   color: #2F3826;
-  font-weight: 600;
 }
 
 a {
   color: #2F3826;
-  font-weight: 400;
 }
 
 .header {
@@ -83,7 +79,6 @@ color: #FFFFFF;
 
 .skills a {
   color: #ECA93B;
-  font-weight: 400;
 }
 
 .skills a:hover {
@@ -112,7 +107,6 @@ color: #FFFFFF;
 
 .experience a {
   color: #003E56;
-  font-weight: 600;
 }
 
 .experience a:hover {
@@ -143,7 +137,6 @@ color: #FFFFFF;
 .portfolio a {
   font-family: 'San Francisco Display Bold';
   color: #801B27;
-  font-weight: 600;
 }
 
 .portfolio a:hover {
