@@ -16,7 +16,6 @@
 body {
   font-family: 'San Francisco Display';
   line-height: 1.5;
-  color: #111;
   background-color: #EFF2ED;
   margin:0px 0px 50px 0px;
 }
@@ -25,6 +24,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'San Francisco Text';
   color: #FFFFFF;
   margin:10px 0px 0px 0px;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+h3 {
+  font-size: 25px;
 }
 
 h1 span, h3 span {
@@ -41,6 +48,20 @@ a {
   color: #2F3826;
 }
 
+a:hover {
+  background-color: #6D7C2D;
+  color: #FFFFFF;
+}
+
+p {
+  font-size: 16px;
+  margin: 10px;
+}
+::selection {
+background: #6E8258	;
+color: #FFFFFF;
+}
+
 .header {
   height: 2px;
   width: auto;
@@ -49,28 +70,8 @@ a {
   background-image: url("bar.png");
 }
 
-.image {
-  position: absolute;
-  top: 140px;
-  left: 400px;
-}
-
-a:hover {
-  background-color: #6D7C2D;
-  color: #FFFFFF;
-}
-
-p {
-  font-size: 15px;
-  margin: 5px;
-}
-::selection {
-background: #6E8258	;
-color: #FFFFFF;
-}
-
 .content {
-  margin:70px 10% 0px 30%;
+  margin:70px 20% 0px 30%;
 }
 
 .skills a {
@@ -86,8 +87,22 @@ color: #FFFFFF;
   display: none;
   padding : 5px;
 }
+
 .skills .skills_header {
   cursor: pointer;
+}
+
+.skills_ios {
+  margin-left: 0%;
+}
+
+.skills_web {
+  background: #335566;
+  margin-left: 33%;
+}
+
+.skills_tools {
+  margin-left: 66%;
 }
 
 .skills .skills_h3 span {
