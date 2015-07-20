@@ -69,12 +69,8 @@ background: #6E8258	;
 color: #FFFFFF;
 }
 
-.resume {
-  margin:70px 100px 0px 100px;
-}
-
-.skills {
-  margin:0px 0px 0px 100px;
+.content {
+  margin:70px 10% 0px 30%;
 }
 
 .skills a {
@@ -90,7 +86,9 @@ color: #FFFFFF;
   display: none;
   padding : 5px;
 }
-.skills .skills_header { }
+.skills .skills_header {
+  cursor: pointer;
+}
 
 .skills .skills_h3 span {
   background: -webkit-linear-gradient(left, #BF8830 0%, #ECA93B 100%);
@@ -99,10 +97,6 @@ color: #FFFFFF;
 .skills ::selection {
   background: #ECA93B	;
   color: #FFFFFF;
-}
-
-.experience {
-  margin:0px 0px 0px 100px;
 }
 
 .experience a {
@@ -128,10 +122,8 @@ color: #FFFFFF;
   color: #FFFFFF;
 }
 
-.experience .experience_header { }
-
-.portfolio {
-  margin:0px 0px 0px 100px;
+.experience .experience_header {
+  cursor: pointer;
 }
 
 .portfolio a {
@@ -149,7 +141,9 @@ color: #FFFFFF;
   padding : 5px;
 }
 
-.portfolio .portfolio_header { }
+.portfolio .portfolio_header {
+  cursor: pointer;
+}
 
 .portfolio .portfolio_h3 span {
   background: -webkit-linear-gradient(left, #801B27 0%, #B32536 100%);
@@ -160,16 +154,14 @@ color: #FFFFFF;
   color: #FFFFFF;
 }
 
-.education {
-  margin:0px 0px 0px 100px;
-}
-
 .education .education_content {
   display: none;
   padding : 5px;
 }
 
-.education .education_header { }
+.education .education_header {
+  cursor: pointer;
+}
 
 .education .education_h3 span {
   background: -webkit-linear-gradient(left, #C30083 0%, #92256E 100%);
