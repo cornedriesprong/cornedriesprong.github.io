@@ -1,4 +1,4 @@
-/*@font-face {
+@font-face {
     font-family: 'San Francisco Display';
     src: url('SanFranciscoDisplay-Regular.otf');
 }
@@ -6,7 +6,7 @@
 @font-face {
     font-family: 'San Francisco Text';
     src: url('SanFranciscoText-Regular.otf');
-}*/
+}
 
 body {
   font-family: 'San Francisco Display';
@@ -48,9 +48,9 @@ a {
 }
 
 .image {
-    position: absolute;
-    top: 130px;
-    left: 450px;
+  position: absolute;
+  top: 135px;
+  left: 400px;
 }
 
 a:hover {
