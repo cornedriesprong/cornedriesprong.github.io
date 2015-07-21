@@ -1,24 +1,9 @@
-@font-face {
-    font-family: 'San Francisco Display';
-    src: url('SanFranciscoDisplay-Regular.otf')
-}
-
-@font-face {
-    font-family: 'San Francisco Display Bold';
-    src: url('SanFranciscoDisplay-Semibold.otf')
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: url('SanFranciscoText-Regular.otf');
-}
-
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-weight: lighter;
   color: #262625;
   line-height: 1.5;
-  background-color: #330D26;
+  background-color: #26081C;
   margin:0px 0px 0px 0px;
 }
 
