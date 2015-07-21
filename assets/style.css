@@ -14,15 +14,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 38px;
+  font-size: 42px;
 }
 
 h3 {
-  font-size: 25px;
-}
-
-b {
-  color: #2F3826;
+  font-size: 30px;
 }
 
 a {
@@ -36,7 +32,7 @@ a:hover {
 
 p {
   color: #E1E6CF;
-  font-size: 16px;
+  font-size: 18px;
 }
 ::selection {
   background: #6E8258	;
@@ -54,7 +50,7 @@ p {
 }
 
 .header {
-  height: 4px;
+  height: 5px;
   width: auto;
   position: relative;
   top: 0px;
@@ -74,12 +70,8 @@ p {
   color: #003E56;
 }
 
-.skills b {
-  color: #000000;
-}
-
 .skills p {
-  color: #000000;
+  color: #261B0D;
 }
 
 .skills a:hover {
@@ -122,10 +114,6 @@ p {
   font-weight: bolder;
 }
 
-.experience b {
-  color: #FFFFFF;
-}
-
 .experience a:hover {
   background-color: #003E56;
   color: #FFFFFF;
@@ -163,10 +151,6 @@ p {
   color: #ECA93B;
 }
 
-.portfolio b {
-  color: #FFFFFF;
-}
-
 .portfolio a:hover {
   background-color: #801B27;
   color: #FFFFFF;
@@ -198,10 +182,6 @@ p {
 
 .education p {
   color: #E6CFDE;
-}
-
-.education b {
-  color: #FFFFFF;
 }
 
 .education_body {
