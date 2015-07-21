@@ -14,16 +14,18 @@
 }
 
 body {
-  font-family: 'San Francisco Display';
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  color: #262625;
   line-height: 1.5;
-  background-color: #EFF2ED;
-  margin:0px 0px 50px 0px;
+  background-color: #002533;
+  margin:0px 0px 0px 0px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'San Francisco Text';
+  font-family: 'Arial';
   color: #FFFFFF;
-  margin:10px 0px 0px 0px;
+  margin:0px 0px 0px 0px;
 }
 
 h1 {
@@ -34,48 +36,66 @@ h3 {
   font-size: 25px;
 }
 
-h1 span, h3 span {
-  background-color: #6E8258;
-  background: -webkit-linear-gradient(left, #4F5920 0%, #6D7C2D 100%);
-}
-
 b {
   font-family: 'San Francisco Display Bold';
   color: #2F3826;
 }
 
 a {
-  color: #2F3826;
+  color: #ECA93B;
 }
 
 a:hover {
-  background-color: #6D7C2D;
-  color: #FFFFFF;
+  background-color: #ECA93B;
+  color: #000000;
 }
 
 p {
+  color: #E1E6CF;
   font-size: 16px;
-  margin: 10px;
 }
 ::selection {
-background: #6E8258	;
-color: #FFFFFF;
+  background: #6E8258	;
+  color: #FFFFFF;
+}
+
+.resume {
+  color: #FFFFFF;
+  background: #4F5920;
+}
+
+.resume_content {
+  width: 600px;
+  margin:0px auto 0px auto;
 }
 
 .header {
-  height: 2px;
+  height: 4px;
   width: auto;
   position: relative;
   top: 0px;
   background-image: url("bar.png");
 }
 
-.content {
-  margin:70px 20% 0px 30%;
+.skills {
+  background-color: #D99A36;
+}
+
+.skills_content {
+  width: 600px;
+  margin:0px auto 0px auto;
 }
 
 .skills a {
-  color: #ECA93B;
+  color: #003E56;
+}
+
+.skills b {
+  color: #000000;
+}
+
+.skills p {
+  color: #000000;
 }
 
 .skills a:hover {
@@ -83,39 +103,43 @@ color: #FFFFFF;
   color: #FFFFFF;
 }
 
-.skills .skills_content {
+.skills_body {
   display: none;
   padding : 5px;
 }
 
-.skills .skills_header {
+.skills_header {
+  width: 600px;
+  margin:0px auto 0px auto;
   cursor: pointer;
 }
 
-.skills_ios {
-  margin-left: 0%;
-}
-
-.skills_web {
-  background: #335566;
-  margin-left: 33%;
-}
-
-.skills_tools {
-  margin-left: 66%;
-}
-
-.skills .skills_h3 span {
-  background: -webkit-linear-gradient(left, #BF8830 0%, #ECA93B 100%);
-}
-
 .skills ::selection {
-  background: #ECA93B	;
+  background: #ECA93B;
   color: #FFFFFF;
 }
 
+.experience {
+  background-color: #003E56;
+  color: #CFDFE6;
+}
+
+.experience_content {
+  width: 600px;
+  margin:0px auto 0px auto;
+}
+
+.experience p {
+  color: #CFDFE6;
+}
+
 .experience a {
-  color: #003E56;
+  color: #ECA93B;
+  font-weight: bolder;
+}
+
+.experience b {
+  color: #FFFFFF;
 }
 
 .experience a:hover {
@@ -123,13 +147,9 @@ color: #FFFFFF;
   color: #FFFFFF;
 }
 
-.experience .experience_content {
+.experience .experience_body {
   display: none;
   padding : 5px;
-}
-
-.experience .experience_h3 span {
-  background: -webkit-linear-gradient(left, #002533 0%, #003E56 100%);
 }
 
 .experience ::selection {
@@ -137,13 +157,30 @@ color: #FFFFFF;
   color: #FFFFFF;
 }
 
-.experience .experience_header {
+.experience_header {
   cursor: pointer;
 }
 
+.portfolio {
+  background-color: #801B27;
+}
+
+.portfolio_content {
+  width: 600px;
+  margin:0px auto 0px auto;
+}
+
+.portfolio p {
+  color: #E6CFD1;
+}
+
 .portfolio a {
-  font-family: 'San Francisco Display Bold';
-  color: #801B27;
+  font-weight: bolder;
+  color: #ECA93B;
+}
+
+.portfolio b {
+  color: #FFFFFF;
 }
 
 .portfolio a:hover {
@@ -151,17 +188,13 @@ color: #FFFFFF;
   color: #FFFFFF;
 }
 
-.portfolio .portfolio_content {
+.portfolio_body {
   display: none;
   padding : 5px;
 }
 
-.portfolio .portfolio_header {
+.portfolio_header {
   cursor: pointer;
-}
-
-.portfolio .portfolio_h3 span {
-  background: -webkit-linear-gradient(left, #801B27 0%, #B32536 100%);
 }
 
 .portfolio ::selection {
@@ -169,20 +202,34 @@ color: #FFFFFF;
   color: #FFFFFF;
 }
 
-.education .education_content {
+.education {
+  background-color: #92256E;
+  color: #FFFFFF;
+}
+
+.education_content {
+  width: 600px;
+  margin:0px auto 0px auto;
+}
+
+.education p {
+  color: #E6CFDE;
+}
+
+.education b {
+  color: #FFFFFF;
+}
+
+.education_body {
   display: none;
   padding : 5px;
 }
 
-.education .education_header {
+.education_header {
   cursor: pointer;
 }
 
-.education .education_h3 span {
-  background: -webkit-linear-gradient(left, #C30083 0%, #92256E 100%);
-}
-
 .education ::selection {
-  background: #92256E	;
+  background: #92256E;
   color: #FFFFFF;
 }
