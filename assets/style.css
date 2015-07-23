@@ -59,7 +59,6 @@ p {
 
 .skills {
   background-color: #CC3631;
-  background: -webkit-linear-gradient(left, #B32D2F, #CC3631 90%);
 }
 
 .skills_content {
@@ -94,7 +93,6 @@ p {
 
 .experience {
   background-color: #E6B150;
-  background: -webkit-linear-gradient(left, #CC9A54, #E6B150 90%);
   color: #CFDFE6;
 }
 
@@ -133,7 +131,6 @@ p {
 
 .portfolio {
   background-color: #CC4F2D;
-  background: -webkit-linear-gradient(left, #B34527, #CC4F2D 90%);
 }
 
 .portfolio_content {
@@ -171,7 +168,6 @@ p {
 
 .education {
   background-color: #0F484D;
-  background: -webkit-linear-gradient(left, #0F474D, #0F484D 90%);
   color: #FFFFFF;
 }
 
