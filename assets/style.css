@@ -87,7 +87,7 @@ p {
 }
 
 .skills ::selection {
-  background: #ECA93B;
+  background: #E6B150;
   color: #FFFFFF;
 }
 
@@ -121,7 +121,7 @@ p {
 }
 
 .experience ::selection {
-  background: #003E56	;
+  background: #0F484D	;
   color: #FFFFFF;
 }
 
@@ -162,7 +162,7 @@ p {
 }
 
 .portfolio ::selection {
-  background: #B32536	;
+  background: #CC4F2D	;
   color: #FFFFFF;
 }
 
@@ -190,6 +190,6 @@ p {
 }
 
 .education ::selection {
-  background: #92256E;
+  background: #CC3631;
   color: #FFFFFF;
 }
