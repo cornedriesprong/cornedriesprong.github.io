@@ -1,14 +1,15 @@
 body {
-  font-family: 'Droid Sans Mono', Arial, Verdana, sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: lighter;
   color: #262625;
-  line-height: 1.5;
   background-color: #262626;
-  margin:0px 0px 0px 0px;
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inconsolata', Arial, Verdana, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: bold;
   color: #FFFFFF;
   margin:0px 0px 0px 0px;
@@ -32,170 +33,28 @@ hr {
     background: #333;
 }
 
-a:hover {
-  background-color: #CC3631;
-  color: #FFFFFF;
-}
-
 p {
-  font-size: 12px;
-}
-::selection {
-  background: #CC3631;
-  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: lighter;
 }
 
-.resume {
-  color: #CCCCCC;
-  background: #262626;
-}
-
-.resume_content {
-  width: 600px;
-  margin:0px auto 0px auto;
+ul {
+  font-size: 14px;
+  font-weight: lighter;
 }
 
 .header {
-  height: 5px;
-  width: auto;
+  height: 200px;
   position: relative;
-  top: 0px;
-  background-image: url("bar.png");
+  top: -20px;
+  margin-left: -10px;
+  margin-right: -10px;
+  background-image: url("cykle.png");
+  object-fit: fill;
 }
 
-.skills {
-  background-color: #CC3631;
-}
-
-.skills_content {
-  width: 600px;
-  margin:0px auto 0px auto;
-}
-
-.skills p {
-  color: #FFFFFF;
-}
-
-.skills a:hover {
-  background-color: #ECA93B;
-  color: #FFFFFF;
-}
-
-.skills_body {
-  display: none;
-  padding : 5px;
-}
-
-.skills_header {
-  width: 600px;
-  margin:0px auto 0px auto;
-  cursor: pointer;
-}
-
-.skills ::selection {
-  background: #E6B150;
-  color: #FFFFFF;
-}
-
-.experience {
-  background-color: #E6B150;
-  color: #CFDFE6;
-}
-
-.experience_content {
-  width: 600px;
-  margin:0px auto 0px auto;
-}
-
-.experience p {
-  color: #000000;
-}
-
-.experience a {
-  color: #0F484D;
-  font-weight: bolder;
-}
-
-.experience a:hover {
-  background-color: #003E56;
-  color: #FFFFFF;
-}
-
-.experience .experience_body {
-  display: none;
-  padding : 5px;
-}
-
-.experience ::selection {
-  background: #0F484D	;
-  color: #FFFFFF;
-}
-
-.experience_header {
-  cursor: pointer;
-}
-
-.portfolio {
-  background-color: #0F484D;
-}
-
-.portfolio_content {
-  width: 600px;
-  margin:0px auto 0px auto;
-}
-
-.portfolio p {
-  color: #FFFFFF;
-}
-
-.portfolio a {
-  font-weight: bolder;
-  color: #E6B150;
-}
-
-.portfolio a:hover {
-  background-color: #E6B150;
-  color: #000000;
-}
-
-.portfolio_body {
-  display: none;
-  padding : 5px;
-}
-
-.portfolio_header {
-  cursor: pointer;
-}
-
-.portfolio ::selection {
-  background: #CC4F2D	;
-  color: #FFFFFF;
-}
-
-.education {
-  background-color: #CC4F2D;
-  color: #FFFFFF;
-}
-
-.education_content {
-  width: 600px;
-  margin:0px auto 0px auto;
-}
-
-.education p {
-  color: #FFFFFF;
-}
-
-.education_body {
-  display: none;
-  padding : 5px;
-}
-
-.education_header {
-  cursor: pointer;
-}
-
-.education ::selection {
-  background: #CC3631;
-  color: #FFFFFF;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
