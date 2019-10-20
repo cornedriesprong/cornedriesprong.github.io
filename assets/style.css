@@ -9,7 +9,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'IBM Plex Condensed', sans-serif;
   font-weight: bold;
   color: #FFFFFF;
   margin:0px 0px 0px 0px;
@@ -20,11 +20,17 @@ h1 span {
 }
 
 h3 {
-  font-size: 26px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 24px;
+  color: #FFF;
 }
 
 a {
   color: #CC3631;
+}
+
+b {
+  color: #FFF;
 }
 
 hr {
@@ -36,11 +42,19 @@ hr {
 p {
   font-size: 14px;
   font-weight: lighter;
+  color: #959595;
+}
+
+i {
+  font-size: 14px;
+  font-weight: lighter;
+  color: #959595;
 }
 
 ul {
   font-size: 14px;
   font-weight: lighter;
+  color: #959595;
 }
 
 .header {

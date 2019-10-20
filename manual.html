@@ -1,0 +1,291 @@
+<html>
+<head>
+	<title>cykle | user manual</title>
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/style.css">
+	<link rel="shortcut icon" href="assets/icon.png"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="header"></div>
+	<h1><span>cykle | user manual</span></br></br>
+	<div class="body">
+		<h3>overview</h3>
+		<p>
+			cykle is an innovative, semi-generative melodic step sequencer for iOS that is based around the concept of sequencing individual musical parameters (such as pitch, velocity, length, transposition, etc.) independently, by way of decoupled sequencer lanes. thus, the interplay between simple elements yields complex and musically interesting results.
+		</p>
+
+		<p>
+			the design of cykle was partly inspired by the article <a href="http://retiary.org/ls/writings/musical_manip.html" target="_blank">Manipulations of Musical Patterns</a> (1981) by composer Laurie Spiegel.
+		</p>
+
+		</br>
+		<h3>standalone & AUv3</h3>
+		<p>
+			cykle can be launched either as a standalone app or as an Audio Unit 3 (AUv3) MIDI plugin in a compatible host (such as <a href="https://kymatica.com/apps/aum" target="_blank">AUM</a>, <a href="https://www.apesoft.it/apematrix/" target="_blank">ApeMatrix</a> or <a href="https://intua.net/beatmaker3/" target="_blank">Beatmaker 3</a>).
+		</p>
+
+		<p>
+			the standalone app communicates with other MIDI-enabled apps via CoreMIDI virtual endpoints (configurable via the channel view).
+		</p>
+
+		</br>
+		<h3>terminology</h3>
+
+		<p>
+			this manual uses various terms specific to sequencers and cykle, which will be clarified below:
+		</p>
+
+		<p>
+		<b>step</b></br>
+			a step is an atomic unit in a sequence. a step can be either binary (on/off) or scalar value (for instance a pitch class such as D, or a beat division such as 1/16th note.
+		</p>
+
+		<p>
+		<b>sequence</b></br>
+			a sequence is a sequentially ordered list of steps. there are various types of sequences (such as pulse, pitch and velocity), each of which will be described in more detail shortly.
+		</p>
+
+		<p>
+		<b>channel</b></br>
+			a channel contains a list of sequences which together yield a musical phrase. channels play simultaneously, similar to the independent channels of audio on a mixing console. and each of the channels can send MIDI to a different destination and/or channel.
+		</p>
+
+		<p>
+		<b>pattern</b></br>
+			a pattern contains one or more channels (in the AUv3 version a pattern contains a single channel, since any number instances of the plugin and so any number of 'channels' can be loaded) as well as the musical metadata such as the tempo, scale and key.
+		</p>
+
+		</br>
+		<img class="center" src="assets/main_view.png" alt="the main view" />
+		<center><i>the main view</i></center>
+
+		</br>
+		<h3>main view</h3>
+
+		<p>
+			the main view is the first view you see when opening cykle. it contains sequencer lanes of various types which are displayed as expandable cells. new sequences can be added to the channel by tapping the + icon in the top right of the screen. sequences can be removed by swiping to the left on a non-expanded cell and tapping 'delete'.
+		</p>
+
+		<p>
+			one of cykle's defining features is that each sequence can have a it's own length. combining sequences of different lengths is a powerful technique, as you can easily generate regular and self-similar musical phrases.
+		</p>
+
+		</br>
+		<img class="center" src="assets/sequence_menu.png" alt="the sequence menu" />
+		<center><i>the sequence menu</i></center>
+
+		</br>
+		<h3>sequence menu</h3>
+
+		<p>
+			tapping the + icon in the top right of the screen opens at 'add sequence' menu, where you can add new sequence lanes to the currently selected channel. note that each sequence type can only appear in the pattern once, with the exception of the 'control' sequence, of which there can be any number. each of the various sequencer types modulates the pattern in a specific way. we will go over them now:
+		</p>
+
+		<p>
+		<b>pulse</b></br>
+			the pulse sequence sets whether a given step will play or not, using a row of on/off steps, similar to a Roland X0X-style drum machine. by default, the pulse sequence emits the root note of the selected scale. in order to select other pitches, it has to be combined with the pitch sequence.
+		</p>
+
+		<p>
+		<b>rest</b></br>
+			the rest sequence is the inverse of the pitch sequence, meaning that an active step will mute the events that would otherwise play on that step. the rest sequence can by used in conjunction with the pulse sequence to generate more complex pulse patterns.
+		</p>
+
+		<p>
+		<b>length</b></br>
+			the length sequence sets the duration of a given step in in a range between 1/16th and a whole note. by specifying different step lengths for each step you can generate more varied rhythmic patterns.
+		</p>
+
+		<p>
+		<b>velocity</b></br>
+			the velocity sequence sets the velocity (i.e. loudness) of a step in the sequence. by specifiying different velocity setting for each step you can generate more dynamic sounding patterns. note that not all MIDI-destinations respond to velocity changes. for patterns without a velocity sequence, all MIDI notes default to a velocity of 100.
+		</p>
+
+		<p>
+		<b>chance</b></br>
+			the chance sequence allows for randomness to be introduced into a pattern. the value on a given step sets the probability that the notes on that step will play within in a range of 20 (20% chance) to 100% (the note(s) will always play).
+		</p>
+
+		<p>
+		<b>pitch</b></br>
+			the pitch sequence sets the pitch class per step. the eventual pitch that will play on the step is determined in conjunction with the octave and tranposition sequences. the values in the pitch sequence correspond to the diatonic pitches in the selected key and scale. unlike most other sequence types, the pitch sequence allows multiselection in order to create for polyphony. a step cannot be empty, use the pulse or rest sequences to add rests.
+		</p>
+
+		<p>
+		<b>accent</b></br>
+			the accent sequence allows for specific step to be accented. this means that they will be played at a higher velocity, as configured in the <i>Accent Velocity</i> setting in the MIDI Settings menu (defaults to 120). an accented step overrides the value in the velocity sequence. a non-accented step plays at the velocity defined in the velocity sequence for that step, or at the default velocity (100).
+		</p>
+
+		<p>
+		<b>gate</b></br>
+			the gate sequence sets the gate time (i.e. duration) of the events per step in a range between 1/16 and 1 whole note. longer gate times mean that the notes on a given step may overlap with events at subsequent steps.
+		</p>
+
+		<p>
+		<b>transpose</b></br>
+			the transpose sequence allows you to transpose the MIDI note(s) on a step by the degrees in the selected scale.
+		</p>
+
+		<p>
+		<b>octave</b></br>
+			the octave sequence tranposes the pitches of the notes on a given step up or down by one or more octaves. just like the pitch sequence, the octave sequence allows for multiselection, so notes can be duplicated over one or more octaves.
+		</p>
+
+		<p>
+		<b>ratchet</b></br>
+			the ratchet sequence duplicates events in time by dividing a given step into a number of equidistant pulses, creating a roll of notes in a musical subdivision of the sequence's main pulse. this is another way of adding rhythmic variety to your patterns. the ratcheting technique was used extensively within the Berlin School of electronic music (e.g. Tangerine Dream et al.).
+		</p>
+
+		<p>
+		<b>control</b></br>
+			the control sequence sends a MIDI CC (Continuous Control) message on a configurable destination number. CC values are commonly used to control synthesizer parameters such as filter cutoff, -resonance and envelope settings. by tapping the control destination number (e.g. '74 - Brightness') on the header cell, the output address can be selected. unlike other sequence types, a channel can contain any number of control sequences, allowing you to control a multitude of parameters at once.
+		</p>
+
+		<p>
+		<b>pitch bend</b></br>
+			the pitch sequence send a MIDI pitch bend message which alters the pitch of a MIDI notes by a sub-semitone interval. the exact amount of alteration depends on the receiving MIDI device's implemetation.
+		</p>
+
+		</br>
+		<h3>pattern transformations</h3>
+
+		</br>
+		<img class="center" src="assets/pattern_transformations.png" alt="the pattern transformation icons" />
+		<center><i>the pattern transformation icons: clock division, add, remove, randomize, mutate, shift left/right/up/down, invert, duplicate, bisect</i></center>
+
+		<p>
+			patterns can be instantly transformed by various actions, allowing to instantly create subtle or dramatic changes in patterns. the available transformations are displayed horizontally scrollable area above the pattern grid of an expanded sequence cell. they are the following:
+		</p>
+
+		<p>
+		<b>clock division</b></br>
+			divides the clock pulses on the specified cell, meaning that each step in the sequence gets played x times before moving to the next. this allows for longer patterns to be created from fewer steps.
+		</p>
+
+		<p>
+		<b>clear</b></br>
+			turns all the steps in a binary pattern or sets each step in a scalar pattern to the default value.
+		</p>
+
+		<p>
+		<b>add</b></br>
+			appends a step to the sequence. you can also change the sequence length by dragging the resizing indicator to the right of the sequence grid.
+		</p>
+
+		<p>
+		<b>remove</b></br>
+			removes the last step from the sequence.
+		</p>
+
+		<p>
+		<b>randomize</b></br>
+			randomizes the sequence. for binary sequences, randomize produces a <a href="http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf" target="_blank">euclidean pattern</a>, which results in more even patterning and thus more musically interesting results.
+		</p>
+
+		<p>
+		<b>mutate</b></br>
+			randomly changes one value in the pattern, allowing to gradually introduce some change without changing the entire pattern.
+		</p>
+
+		<p>
+		<b>shift left/right</b></br>
+			shifts (or, rotates) the sequence along its horizontal axis, meaning that step 1 moves to step 2, step 2 to step 3, etc.
+		</p>
+
+		<p>
+		<b>shift up/down</b></br>
+			shifts or rotate the sequence along its vertical axis, meaning that all steps move one item up or down along the list of available values.
+		</p>
+
+		<p>
+		<b>invert</b></br>
+			inverts the pattern. for binary patterns this means that all the steps that active are set to inactive and vice versa. for scalar patterns this means the values will be mirrored along the vertical axis, i.e., a value on the second-lowest step becomes the second-highest, etc.
+		</p>
+
+		<p>
+		<b>multiply</b></br>
+			doubles the pattern by duplicating the existing steps.
+		</p>
+
+		<p>
+		<b>bisect</b></br>
+			bisects the pattern by removing the latter half of the steps.
+		</p>
+
+		</br>
+		<h3>pattern menu</h3>
+
+		<p>
+			tapping the BPM (e.g., 120) indicator in the navigation bar opens the pattern menu, where you can set the tempo, scale and key of the selected pattern.
+		</p>
+
+		<p>
+			in the AUv3 version these same settings are located in the hamburger menu on the top left. here you can also set the base octave and accent velocity settings* (note that these two settings affect all active AUv3 instances). finally, you can clear the current pattern, as well as copy and paste patterns between different AUv3 instances.
+		</p>
+
+		</br>
+		<h3>channel view</h3>
+
+		</br>
+		<img class="center" src="assets/channel_view.png" alt="the channel view" />
+		<center><i>the channel view</i></center>
+
+		<p>
+			at the bottom of the main view, you see that channel view, here you can add and remove channels. the maximum number of channels is 8. note that the AUv3 version has single-channel instances, since you can open as many instances as you want.
+		</p>
+
+		<p>
+			swipe up on the channel view to reveal the channel configuration panel. here you can enable/disable the selected channel and select its MIDI destination and output channel.
+		</p>
+
+		<p>
+			long press on a channel cell to reveal a tooltip where you can delete or duplicate channels.
+		</p>
+
+		</br>
+		<h3>saving and loading patterns/presets</h3>
+
+		<p>
+			patterns can be loaded and saved via the main menu (accessible via the hamburger icon on the top left of the screen). cykle ships with a number of factory patterns or presets to serve as inspiration.
+		</p>
+
+		</br>
+		<h3>credits</h3>
+		<p>
+		<b>concept, design & development:</b> Corn&eacute; Driesprong</br></br>
+		<b>beta testers:</b> Rolf Seese, Jusep Torres Campalans, Trevor Llewellyn, Gad Baruch Hinkis and others.</br>
+
+		</br>
+		<h3>app version history</h3>
+
+		<p>
+		<b>1.0</b></br>
+			initial release
+		</p>
+
+		<p>
+		<b>1.0.1</b></br>
+			patch update with a couple of bugfixes:</br>
+			fixes cykle AU transport being out of phase with host</br>
+			fixes cykle standalone transport being out of phase with Link timeline</br>
+			reset cykle standalone transport on stop and syncs to Link quantum</br>
+			fixes event on first step not firing when starting AU host transport</br>
+			fixes scale and key not being saved in AU preset</br>
+			fixes hanging MIDI notes on transport stop</br>
+			various other small bugfixes and improvements
+		</p>
+
+		<p>
+		<b>1.0.2</b></br>
+			hotfix: fixes UI displaying incorrectly when launching app in landscape on iPad
+		</p>
+
+		<center>
+      <p>
+        <a href="mailto:cdriesprong@gmail.com">contact</a> | <a href="https://cp3.io/cykle-privacy-policy.html">privacy policy</a>
+      </p>
+    </center>
+	</div>
+</body>
