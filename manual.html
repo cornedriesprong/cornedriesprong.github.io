@@ -49,12 +49,12 @@
 
 		<p>
 		<b>channel</b></br>
-			a channel contains a list of sequences which together yield a musical phrase. channels play simultaneously, similar to the independent channels of audio on a mixing console. and each of the channels can send MIDI to a different destination and/or channel.
+			a channel contains a list of sequences which together yield a looping musical phrase. channels play simultaneously, similar to the independent channels of audio on a mixing console. and each of the channels can send MIDI to a different destination and/or channel.
 		</p>
 
 		<p>
 		<b>pattern</b></br>
-			a pattern contains one or more channels (in the AUv3 version a pattern contains a single channel, since any number instances of the plugin and so any number of 'channels' can be loaded) as well as the musical metadata such as the tempo, scale and key.
+			a pattern contains one or more channels (in the AUv3 version a pattern contains a single channel, since any number instances of the plugin and so any number of 'channels' can be loaded) as well as the musical metadata such as the tempo, swing, scale and key.
 		</p>
 
 		</br>
@@ -65,11 +65,11 @@
 		<h3>main view</h3>
 
 		<p>
-			the main view is the first view you see when opening cykle. it contains sequencer lanes of various types which are displayed as expandable cells. new sequences can be added to the channel by tapping the + icon in the top right of the screen. sequences can be removed by swiping to the left on a non-expanded cell and tapping 'delete'.
+			the main view is the first view you see when opening cykle. it contains the lanes of various sequencer types (pulse, pitch and length, by default) which are shown as expandable cells. new sequences can be added to the channel by tapping the + icon in the top right of the screen. sequences can be removed by swiping to the left on a non-expanded cell and tapping 'delete'.
 		</p>
 
 		<p>
-			one of cykle's defining features is that each sequence can have a it's own length. combining sequences of different lengths is a powerful technique, as you can easily generate regular and self-similar musical phrases.
+			one of cykle's defining features is that each sequence can have a it's own length. combining sequences of different lengths is a powerful technique, as you can quickly and easily generate regular and self-similar musical phrases.
 		</p>
 
 		</br>
@@ -91,6 +91,11 @@
 		<p>
 		<b>rest</b></br>
 			the rest sequence is the inverse of the pitch sequence, meaning that an active step will mute the events that would otherwise play on that step. the rest sequence can by used in conjunction with the pulse sequence to generate more complex pulse patterns.
+		</p>
+
+		<p>
+		<b>offset</b></br>
+			the offset sequence move the selected step ahead in time by a small increment. this allows for swing or more complex timing variations to be created.
 		</p>
 
 		<p>
@@ -125,12 +130,12 @@
 
 		<p>
 		<b>transpose</b></br>
-			the transpose sequence allows you to transpose the MIDI note(s) on a step by the degrees in the selected scale.
+			the transpose sequence allows you to transpose the MIDI note(s) on a given step by the degrees in the selected scale.
 		</p>
 
 		<p>
 		<b>octave</b></br>
-			the octave sequence tranposes the pitches of the notes on a given step up or down by one or more octaves. just like the pitch sequence, the octave sequence allows for multiselection, so notes can be duplicated over one or more octaves.
+			the octave sequence transposes the pitches of the notes on a given step up or down by one or more octaves. just like the pitch sequence, the octave sequence allows for multiselection, so notes can be duplicated over one or more octaves.
 		</p>
 
 		<p>
@@ -140,7 +145,7 @@
 
 		<p>
 		<b>control</b></br>
-			the control sequence sends a MIDI CC (Continuous Control) message on a configurable destination number. CC values are commonly used to control synthesizer parameters such as filter cutoff, -resonance and envelope settings. by tapping the control destination number (e.g. '74 - Brightness') on the header cell, the output address can be selected. unlike other sequence types, a channel can contain any number of control sequences, allowing you to control a multitude of parameters at once.
+			the control sequence sends a MIDI CC (Continuous Control) message on a configurable destination number. CC values are commonly used to control synthesizer parameters such as filter cutoff, -resonance and envelope settings. by tapping the control destination number (e.g. '74 - Brightness') on the header cell, the output address can be selected. unlike other sequence types, a channel can contain any number of control sequences, allowing you to control a multitude of parameters simultaneously.
 		</p>
 
 		<p>
@@ -153,7 +158,7 @@
 
 		</br>
 		<img class="center" src="assets/pattern_transformations.png" alt="the pattern transformation icons" />
-		<center><i>the pattern transformation icons: clock division, add, remove, randomize, mutate, shift left/right/up/down, invert, duplicate, bisect</i></center>
+		<center><i>the pattern transformation icons: clock division, add, remove, randomize, mutate, shift left/right/up/down, reverse, invert, duplicate, bisect</i></center>
 
 		<p>
 			patterns can be instantly transformed by various actions, allowing to instantly create subtle or dramatic changes in patterns. the available transformations are displayed horizontally scrollable area above the pattern grid of an expanded sequence cell. they are the following:
@@ -200,6 +205,11 @@
 		</p>
 
 		<p>
+		<b>reverse</b></br>
+			reverses the pattern.
+		</p>
+
+		<p>
 		<b>invert</b></br>
 			inverts the pattern. for binary patterns this means that all the steps that active are set to inactive and vice versa. for scalar patterns this means the values will be mirrored along the vertical axis, i.e., a value on the second-lowest step becomes the second-highest, etc.
 		</p>
@@ -218,7 +228,7 @@
 		<h3>pattern menu</h3>
 
 		<p>
-			tapping the BPM (e.g., 120) indicator in the navigation bar opens the pattern menu, where you can set the tempo, scale and key of the selected pattern.
+			tapping the BPM (e.g., 120) indicator in the navigation bar opens the pattern menu, where you can set the tempo, swing, scale and key of the selected pattern. note that the swing global swing effect affects every second 16th note in the pattern, so there need to be events on those step values for the swing to have an effect.
 		</p>
 
 		<p>
@@ -261,26 +271,47 @@
 		<h3>app version history</h3>
 
 		<p>
-		<b>1.0</b></br>
-			initial release
+		<b>1.1</b></br>
+		<ul>
+			<li>added offset sequence type (offsets the selected step in time)</li>
+			<li>added global swing setting</li>
+			<li>added transport (start/stop/pause) controls in standalone version</li>
+			<li>display two channels on screen on iPad landscape mode</li>
+			<li>added option to duplicate channel</li>
+			<li>transpose sequence stays in key</li>
+			<li>added option to copy and paste patterns between AUv3 instances</li>
+			<li>added link to user manual in menu</li>
+			<li>added option to reverse patterns</li>
+			<li>show values on selected steps</li>
+			<li>added new presets</li>
+			<li>various bugfixes and improvements</li>
+		</ul>
+
+		<p>
+		<b>1.0.2</b></br>
+		<ul>
+			<li>hotfix: fixes UI displaying incorrectly when launching app in landscape on iPad</li>
+		</ul>
 		</p>
 
 		<p>
 		<b>1.0.1</b></br>
-			patch update with a couple of bugfixes:</br>
-			fixes cykle AU transport being out of phase with host</br>
-			fixes cykle standalone transport being out of phase with Link timeline</br>
-			reset cykle standalone transport on stop and syncs to Link quantum</br>
-			fixes event on first step not firing when starting AU host transport</br>
-			fixes scale and key not being saved in AU preset</br>
-			fixes hanging MIDI notes on transport stop</br>
-			various other small bugfixes and improvements
-		</p>
+		<ul>
+			<li>patch update with a couple of bugfixes:</li>
+			<li>fixes cykle AU transport being out of phase with host</li>
+			<li>fixes cykle standalone transport being out of phase with Link timeline</li>
+			<li>reset cykle standalone transport on stop and syncs to Link quantum</li>
+			<li>fixes event on first step not firing when starting AU host transport</li>
+			<li>fixes scale and key not being saved in AU preset</li>
+			<li>fixes hanging MIDI notes on transport stop</li>
+			<li>various other small bugfixes and improvements</li>
+		</ul>
 
 		<p>
-		<b>1.0.2</b></br>
-			hotfix: fixes UI displaying incorrectly when launching app in landscape on iPad
-		</p>
+		<b>1.0</b></br>
+		<ul>
+			<li>initial release</li>
+		</ul>
 
 		<center>
       <p>
