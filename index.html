@@ -1,80 +1,138 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>cykle | advanced step sequencer</title>
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="assets/style.css">
-	<link rel="shortcut icon" href="assets/icon.png"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+<title>cykle | advanced pattern sequencer</title>
+<link href="assets/style.css" rel="stylesheet" type="text/css" />
+    </head>
 
 <body>
-	<div class="header"></div>
-	<div class="body">
-		<h2><span>cykle | advanced pattern sequencer</span>
-		<p>
-      cykle is an innovative, semi-generative melodic step sequencer for iOS that is based around the concept of sequencing individual musical parameters (such as pitch, velocity, length, transposition, etc.) independently, by way of decoupled sequencer lanes. thus, the interplay between simple elements yields complex and musically interesting results.
-    </p>
-		<center><p>
-			<a href="https://cp3.io/manual.html" target="_blank">user manual</a>
-		</center></p>
-    <br>
-    <iframe class="center" src="https://player.vimeo.com/video/361416795" width="320" height="691" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><br>
-    <a href="https://apps.apple.com/us/app/cykle/id1187680637" target="_blank"><img class="center" src="assets/app-store.png" alt="Get cykle on the App Store" width="200" height="74" /></a><br>
-    <hr>
-    <b>videos:</b><br>
-		<ul>
-			<li><a href="https://www.youtube.com/watch?v=nwtl0_Qx4jw" target="_blank">The Sound Test Room: CYKLE - Advanced Midi Step Sequencer - AUv3 - iPad Live</a></li>
-			<li><a href="https://www.youtube.com/watch?v=3g-LajKREAg" target="_blank">TheAudioDabbler: DabbleLab Jam with Cykle and friends</a></li>
-			<li><a href="https://www.youtube.com/watch?v=hnc3TX1r14g" target="_blank">Apps4idevices - cykle: an overview</a></li>
-			<li><a href="https://www.youtube.com/watch?v=um_33b1Wf2Y" target="_blank">cykle loves digitone</a></li>
-		</ul>
-		<hr>
-    <b>features:</b><br>
-    <ul>
-      <li>works as an Audio Unit (AUv3) MIDI plugin or as a standalone (CoreMIDI) app</li>
-      <li>sample-accurate sequencing engine</li>
-      <li>universal layout with landscape and portrait modes</li>
-      <li>slick and responsive native UI</li>
-      <li>configurable tempo, scale and key</li>
-      <li>each channel can be routed to a separate MIDI destination and channel</li>
-      <li>each channel sends MIDI note- and pitch-bend data as well as an arbitrary number of continuous control messages</li>
-      <li>AUv3 state-saving</li>
-      <li>save and load patterns</li>
-      <li>independent sequencer lanes for various musical parameters:</li>
-        <ul>
-        	<li>pitch</li>
-        	<li>pulses</li>
-        	<li>rests</li>
-        	<li>velocity</li>
-        	<li>accent</li>
-        	<li>step length</li>
-        	<li>gate length</li>
-        	<li>chance</li>
-        	<li>ratcheting</li>
-        	<li>transposition</li>
-        	<li>transposition by octave</li>
-        	<li>pitch bend</li>
-        	<li>mappable MIDI CC values (e.g., filter cutoff, resonance, envelope, etc.)</li>
-        </ul>
-      <li>sequences can be instantly manipulated by various actions:</li>
-      <ul>
-        <li>shift left/right/up/down</li>
-        <li>rotate</li>
-        <li>randomize</li>
-        <li>mirror</li>
-        <li>double</li>
-        <li>bisected</li>
-      </ul>
-      <li>configurable clock division rate per sequencer lane</li>
-      <li>Ableton Link support</li>
-      <li>an offset can be added to timing to compensate for MIDI latency</li>
-      <li>ongoing development and support, many new features on the roadmap</li>
-		</ul>
-    <hr>
-		<center>
-      <p>
-        <a href="mailto:cdriesprong@gmail.com">contact</a> | <a href="https://cp3.io/cykle-privacy-policy.html">privacy policy</a>
-      </p>
-    </center>
-	</div>
-</body>
+    <div class="main">
+        <img class="header-img" alt="cykle" src="assets/cykle.png" width="640" />
+
+<h2 id="overview">Overview</h2>
+<img class="left" src="assets/cykle_icon.png" alt="App Icon" />
+
+<p><strong>cykle</strong> is an innovative, semi-generative melodic step sequencer for iOS that works by abstracting away all musical parameters (such as <em>pitch</em>, <em>velocity</em>, <em>length</em>, <em>transposition</em> and more) into individual sequences, by way of <strong>decoupled sequencer lanes</strong>. thus, the interplay between simple elements easily yields complex and musically interesting results.</p>
+<p><a href="https://apps.apple.com/us/app/cykle/id1187680637" target="_blank"><img class="center" src="assets/appstore_white.svg" alt="buy on the App Store" width="180" height="70" /></a></p>
+<h2 id="features">Features</h2>
+<iframe class="right" src="https://player.vimeo.com/video/361416795" width="213" height="460" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+<ul>
+<li>consistent <strong>5-star</strong> rating on the App Store ★★★★★</li>
+<li>works on both <strong>iPhone</strong> and <strong>iPad</strong> (portrait and landscape mode)</li>
+<li>works as an Audio Unit (<em>AUv3</em>) MIDI plugin or as a standalone (<em>CoreMIDI</em>) app</li>
+<li><strong>sample-accurate</strong> sequencing engine</li>
+<li>slick and responsive <strong>native</strong> UI</li>
+<li>pattern snapshots <strong>selectable</strong> via MIDI Program Change</li>
+<li>pitch selectable by <strong>MIDI note input</strong> (<em>arp</em> and <em>chord</em> modes)</li>
+<li>configurable <strong>tempo</strong>, <strong>scale</strong> and <strong>key</strong></li>
+<li>every channel can be routed to a separate <strong>MIDI destination</strong> and <strong>channel</strong></li>
+<li>every channel sends <strong>MIDI note</strong>- and <strong>pitch-bend</strong> data as well as an arbitrary number of MIDI continuous control (<strong>CC</strong>) messages</li>
+<li>AUv3 state-saving</li>
+<li><strong>randomization</strong> features</li>
+<li><strong>save</strong> and <strong>load</strong> patterns</li>
+<li>independent sequencer lanes for the following parameters:<ul>
+<li>pulse</li>
+<li>pitch</li>
+<li>rest</li>
+<li>step length</li>
+<li>chance</li>
+<li>velocity</li>
+<li>accent</li>
+<li>gate length</li>
+<li>chance</li>
+<li>ratchet (note repeat)</li>
+<li>accidental (flatten/sharpen)</li>
+<li>transpose</li>
+<li>chord inversion</li>
+<li>octave</li>
+<li>pitch bend</li>
+<li>mappable MIDI CC values (e.g., filter cutoff, resonance, envelope, etc.)</li>
+</ul>
+</li>
+<li>sequences can be instantly transformed by the following actions:<ul>
+<li>shifted left/right/up/down</li>
+<li>rotate</li>
+<li>randomize</li>
+<li>mirror</li>
+<li>reverse</li>
+<li>double</li>
+<li>bisect</li>
+</ul>
+</li>
+<li>configurable <strong>clock division</strong> rate per sequencer lane</li>
+<li>MIDI clock output</li>
+<li><a href="https://www.ableton.com/en/link/">Ableton Link</a> support</li>
+<li>an offset can be added to timing to compensate for MIDI latency</li>
+<li>works without internet connection</li>
+<li>no push notifications</li>
+<li>no ads or in-app purchases</li>
+<li>no third-party behavioural tracking tools</li>
+<li>ongoing development and support, many new features on the roadmap</li>
+</ul>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2>
+<ul>
+<li><p><strong>how does this work? is there a manual?</strong><br>  yes, <a href="manual.html">the manual is here</a>.</p>
+</li>
+<li><p><strong>why don&#39;t hear I anything?</strong><br>  cykle doesn&#39;t make any sound by itself. you will need to connect to a MIDI-compatible synthesizer app on your device, load it in an AUv3-compatible host (such as Audiobus or AUM) or connect it to an external synthesizer, computer or any other sound generating device.</p>
+</li>
+<li><p><strong>how do I select a MIDI destination or channel?</strong><br>  swipe up on the <a href="manual.html#channel-view">channel view</a> and tap <em>Output destination</em>.</p>
+</li>
+<li><p><strong>are the snapshots MIDI controllable?</strong><br>  yes, you can switch snapshots by sending MIDI program changes (<em>bank select</em> 1-8) to cykle&#39;s MIDI input.</p>
+</li>
+<li><p><strong>what is <em>MIDI Input mode</em>?</strong><br>  an active MIDI input mode allows you to control the pitch of a pattern via external MIDI input, such as an external MIDI keyboard controller. select the MIDI input source in the menu &gt; <em>Settings</em> &gt; <em>MIDI Input source</em>.</p>
+</li>
+<li><p><strong>how can I send MIDI CC messages?</strong><br>  add a <em>control</em> sequence to your channel and select the desired control number by tapping the label (<em>74 - Brightness</em>) on the cell.</p>
+</li>
+<li><p><strong>does cykle send MIDI clock?</strong><br>  cykle currently doesn&#39;t generate a MIDI clock signal, but this will be added in a later version. in the meantime, you can <a href="https://alexandernaut.com/linktomidi/">this free app</a> to convert cykle&#39;s Ableton Link clock to MIDI.</p>
+</li>
+<li><p><strong>I have another question</strong><br>  shoot me <a href="mailto:cdriesprong@gmail.com">an email</a>.</p>
+</li>
+</ul>
+<h2 id="videos">Videos</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=nwtl0_Qx4jw">The Sound Test Room: CYKLE - Advanced Midi Step Sequencer - AUv3 - iPad Live</a></li>
+<li><a href="https://www.youtube.com/watch?v=3g-LajKREAg">TheAudioDabbler: DabbleLab Jam with Cykle and friends</a></li>
+<li><a href="https://www.youtube.com/watch?v=hnc3TX1r14g">Apps4idevices - cykle: an overview</a></li>
+<li><a href="https://www.youtube.com/watch?v=um_33b1Wf2Y">cykle ❤️ digitone</a></li>
+</ul>
+<h2 id="nice-things-people-said-about-cykle">Nice things people said about cykle</h2>
+<ul>
+<li><p>&quot;<strong>My favourite iOS sequencer</strong>&quot; ★★★★★<br>  &quot;<em>Neat and super efficient midi sequencer. I can only appreciate the effort the dev put in his creature!</em>&quot; 
+  — App Store Review</p>
+</li>
+<li><p>&quot;<strong>amazing flexible yet simple sequencer</strong>&quot; ★★★★★ 
+— App store review</p>
+</li>
+<li><p>&quot;<em>A wonder! Complex concept implemented simple and fun.</em>&quot; — <a href="https://www.youtube.com/watch?v=Bl5630CeYFs">Youtube comment</a></p>
+</li>
+<li><p>&quot;<em>This seems sick. I like this idea of just abstracting EVERYTHING off a sequence out, allowing for all kinds of mistakes and cool accidents.</em>&quot; — <a href="https://llllllll.co">Lines Forum</a></p>
+</li>
+<li><p>&quot;<em>It’s absolutely fantastic! Super easy to get a cool sequence going, and the many different lanes of sequencing allows for a lot of variety throughout the playing.</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>What a bucket of fun. (…) Brilliant little critter. so simple yet wildly powerful. Been looking for something exactly like this for yonks. Truly an outstanding little app.</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>What a brilliant app. So simple to use but so many features.</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>what an absolute gem</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>OK, now I am Suzanne Ciani. I love this.</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>Thank you for this great app. It is very fun, creative, and inspiring.</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>Cykle is a wondrous app! F-r-e-e-d-o-m!</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>One of best sequencers out there!</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+<li><p>&quot;<em>Love this app. Really elegant design!</em>&quot; — <a href="https://forum.audiob.us">Audiobus Forum</a></p>
+</li>
+</ul>
+
+        <div class="footer">
+    © 2020 – Corné Driesprong | <a href="privacy-policy.html">Privacy Policy</a> | <a href="mailto:cdriesprong@gmail.com">Contact</a>
+</div>
+    </div>
+  </body>
+</html>
+
