@@ -10,8 +10,6 @@ title: "About"
 
 My name is Corné, and I work as a freelance [fullstack software developer](https://github.com/cornedriesprong/). I have a lot of experience in mobile (iOS) development and front-end web development (React). I'm particularly interested in music technology, and have developed two iOS/iPadOS music apps.
 
-You can download my full resumé [here](assets/resume.pdf).
-
 In my free time I like to [make music](https://soundcloud.com/sleeprites).
 
 ## Website
