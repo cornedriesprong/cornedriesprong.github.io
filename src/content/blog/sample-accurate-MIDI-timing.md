@@ -13,7 +13,7 @@ description: How to obtain sample accurate MIDI timing in the context of AUv3 pl
 
 ## Preface
 
-One of the biggest technical challenges I faced while building my MIDI sequencer AUv3[^1] plugins **[cykle](cykle)** and **[polybeat](polybeat)** was obtaining sample-accurate MIDI sequencing. Ensuring precise MIDI event timing on a sample-level is crucial for accurate playback. Since many AUv3 plugins appear to do this incorrectly[^2], I've written this post to explain how I do these calculations in my apps.
+One of the biggest technical challenges I faced while building my MIDI sequencer AUv3[^1] plugins **[cykle](cykle)** and **[polybeat](polybeat)** was obtaining sample-accurate MIDI sequencing. Ensuring precise MIDI event timing on a sample-level is crucial for accurate playback. Since not all AUv3 plugins appear to do this correctly[^2], I've written this post to explain how I do these calculations in my apps.
 
 A Github repository containing the code from this article can be found <a href="https://github.com/cornedriesprong/AUv3SequencerExample" target="_blank">here</a>.
 
@@ -102,7 +102,7 @@ for (int i = 0; i < sequence.eventCount; i++) {
 
 We calculate the offset by subtracting the sample time at the render cycle's start (modulo the sequencer loop's length) from the event timestamp (in samples). This provides the exact offset to add to the absolute sample time at the render cycle's beginning (timestamp->mSampleTime) for a sample-accurate timestamp passed to the host.
 
-_Sidenote: Consider collecting all the current render cycle's events and calling the midiOutputBlock only once. Note that, depending on buffer size and MIDI event density, multiple output block calls within a single render cycle might be needed if events with different timestamps occur in the same cycle[^5]. For simplicity, these considerations are omitted here._
+_Sidenote: consider collecting all the current render cycle's events and calling the midiOutputBlock only once. Note that, depending on buffer size and MIDI event density, multiple output block calls within a single render cycle might be needed if events with different timestamps occur in the same cycle[^5]. For simplicity, these considerations are omitted here._
 
 Now the events should be timestamped correctly, however you may observe some skipped events. This happens when a sequencer loop transition occurs during a render cycle (i.e., bufferStartTime is later than bufferEndTime due to loop wrapping), and events for the next loop's beginning should already be scheduled. This can be addressed as follows:
 

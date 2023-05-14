@@ -1,0 +1,41 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Footer from "@components/Footer.astro";
+---
+
+<Layout>
+  <main id="main-content">
+    <section id="hero">
+      <h1>Privacy Policy</h1>
+      <p>
+        This privacy policy governs your use of the software applications cykle
+        & polybeat ("Application") for iOS that was created by Corné Driesprong.
+        this privacy policy was last updated on May 3rd, 2023.
+      </p>
+      <p class="pt-8 pb-4 text-3xl font-bold">We don't collect your data</p>
+      <p>
+        The Application does not collect or transmit any personally identifiable
+        information about you, such as your name, location, address, phone
+        number or email address. As no personal information is collected,
+        transmitted, or maintained by the Application, we do not share personal
+        information with anyone.
+      </p>
+      <p class="pt-8 pb-4 text-3xl font-bold">Contact</p>
+      <p>
+        <a
+          href="mailto:corne@cp3.io"
+          class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+          >Contact me</a
+        > if you have any questions regarding privacy while using the Application.
+      </p>
+    </section>
+  </main>
+  <style>
+    #hero h1 {
+      @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    }
+    #hero p {
+      @apply my-2;
+    }
+  </style>
+</Layout>

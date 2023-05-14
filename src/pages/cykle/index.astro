@@ -1,0 +1,475 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Footer from "@components/Footer.astro";
+import cykle from "../../assets/cykle.png";
+import appstore_light from "../../assets/appstore_light.svg";
+import appstore_dark from "../../assets/appstore_dark.svg";
+---
+
+<Layout pageTitle="cykle">
+  <main id="main-content">
+    <section id="hero">
+      <h1><i>cykle</i></h1>
+      <div class="mt-2 flex items-start gap-6">
+        <img
+          src={cykle}
+          class="mt-4 mb-0 h-[100px] w-[100px] rounded-xl"
+          alt="cykle icon"
+        />
+        <p>
+          <b>cykle</b> is an inventive, semi-generative <b
+            >melodic step sequencer</b
+          > for iOS, iPadOS and Mac (Catalyst). cykle abstracts every musical parameter
+          into its own sequence using decoupled sequencer lanes, producing complex
+          and musically engaging patterns from the interactions between simple elements.
+        </p>
+      </div>
+      <center>
+        <div>
+          <a
+            target="_blank"
+            href="https://apps.apple.com/us/app/cykle/id1187680637"
+          >
+            <img
+              src={appstore_light}
+              class="my-8 w-[200px]"
+              alt="Download cykle on the Apple App Store"
+              id="app-store-light"
+            />
+            <img
+              src={appstore_dark}
+              class="my-8 w-[200px]"
+              alt="Download cykle on the Apple App Store"
+              id="app-store-dark"
+            />
+          </a>
+        </div>
+      </center>
+      <center
+        ><iframe
+          title="vimeo-player"
+          class="mt-12 mb-8 rounded-xl"
+          src="https://player.vimeo.com/video/361416795?h=c3db7529e9"
+          width="320"
+          height="691.5"
+          frameborder="0"
+          allowfullscreen></iframe></center
+      >
+      <p class="pt-2 text-xl font-bold">More videos:</p>
+      <ul class="list-disc">
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=nwtl0_Qx4jw"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >The Sound Test Room: CYKLE - Advanced Midi Step Sequencer - AUv3 -
+            iPad Live</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://youtu.be/yHdqZSZS8TY?t=110"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+          >
+            My Top 3 Generative MIDI Sequencer Apps | haQ attaQ
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://youtu.be/l_6UJ8OsxPg?t=264"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Jakob Haq: AUM MIDI Sequencing</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.facebook.com/watch/?v=227205395088273"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Perplex On: Random glitching with #cykle sequencer...</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=3g-LajKREAg"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >TheAudioDabbler: DabbleLab Jam with Cykle and friends</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=I7dtnb2wVRo"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Apparillo &amp; Cykle</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=hnc3TX1r14g"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >cykle ❤️ digitone</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=wuGIsJOB3F4"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >CYKLE - Advanced Midi Sequencer - Playing Hardware in AUM - Live
+            iPad Demo</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=hnc3TX1r14g"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Apps4idevices - cykle: an overview</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=itoyGLelmaM"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Apps4idevices - Cykle v1.0.1</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=TuQ5bcYKYlU"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Cykle Jam #1 with GeoSWAM cello improv</a
+          >
+        </li>
+      </ul>
+      <br />
+    </section>
+    <section id="reviews">
+      <p class="pt-8 pb-4 text-3xl font-bold">Reviews</p>
+      <div class="pt-4">
+        <strong>&quot;My favourite iOS sequencer&quot;</strong>
+        <strong>★★★★★</strong><br />&quot;<em
+          >Neat and super efficient midi sequencer. I can only appreciate the
+          effort the dev put in his creature!</em
+        >&quot; — App Store Review
+      </div>
+      <div class="pt-4">
+        <em>&quot;amazing flexible yet simple sequencer&quot;</em>
+        <strong>★★★★★</strong> — App store review
+      </div>
+      <div class="pt-4">
+        <strong>&quot;Genius sequencer!&quot;</strong>
+        <strong>★★★★★</strong><br />&quot;<em
+          >Great for sequencing. Fantastic to make &#39;organic&#39; patterns
+          with choosing the number of steps for all parameters</em
+        >&quot; — App store review
+      </div>
+      <div class="pt-4">
+        <em>&quot;Excellent MIDI tool, smart and well executed&quot;</em>
+        <strong>★★★★★</strong> — App store review
+      </div>
+      <div class="pt-4">
+        <strong>&quot;Mighty oaks from tiny acorns grow&quot;</strong>
+        <strong>★★★★★</strong><br />&quot;<em
+          >This has become my go to sequencer for operating inside AUM, because
+          the genius idea of separating pitch, gate, pattern length etcetera
+          from each other means that you can create surprisingly complex,
+          musical, evolving sequences or polyrhythmic patterns from tiny seeds
+          of a handful of notes. (...)</em
+        >&quot; — App store review
+      </div>
+      <div class="pt-4">
+        <em
+          >&quot;A wonder! Complex concept implemented simple and fun.&quot;</em
+        >
+        — <a href="https://www.youtube.com/watch?v=hnc3TX1r14g"
+          >Youtube comment</a
+        >
+      </div>
+      <div class="pt-4">
+        <em
+          >&quot;This seems sick. I like this idea of just abstracting
+          EVERYTHING off a sequence out, allowing for all kinds of mistakes and
+          cool accidents.&quot;</em
+        > — <a href="https://llllllll.co/t/your-ios-arsenal/21500/524"
+          >Lines Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em
+          >&quot;It’s absolutely fantastic! Super easy to get a cool sequence
+          going, and the many different lanes of sequencing allows for a lot of
+          variety throughout the playing.&quot;</em
+        > — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em
+          >&quot;What a bucket of fun. (…) Brilliant little critter. so simple
+          yet wildly powerful. Been looking for something exactly like this for
+          yonks. Truly an outstanding little app.&quot;</em
+        > — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em
+          >&quot;What a brilliant app. So simple to use but so many
+          features.&quot;</em
+        > — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em>&quot;what an absolute gem&quot;</em> — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em>&quot;OK, now I am Suzanne Ciani. I love this.&quot;</em> — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em
+          >&quot;Thank you for this great app. It is very fun, creative, and
+          inspiring.&quot;</em
+        > — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em>&quot;Cykle is a wondrous app! F-r-e-e-d-o-m!&quot;</em> — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em>&quot;One of best sequencers out there!&quot;</em> — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+      <div class="pt-4">
+        <em>&quot;Love this app. Really elegant design!&quot;</em> — <a
+          href="https://forum.audiob.us/discussion/34855/cykle-advanced-pattern-sequencer-now-live/"
+          >Audiobus Forum</a
+        >
+      </div>
+    </section>
+    <section id="features">
+      <p class="pt-8 pb-4 text-3xl font-bold">Features</p>
+      <ul class="list-disc">
+        <li>
+          average <strong>4.9-star rating</strong> on the App Store <strong
+            >★★★★★</strong
+          >
+        </li>
+        <li>
+          <strong>universal</strong> app (works on both <strong>iPhone</strong> and
+          <strong>iPad</strong>)
+        </li>
+        <li>
+          works in both <strong>portrait</strong> and <strong>landscape</strong>
+          mode
+        </li>
+        <li>
+          works as an <strong>Audio Unit</strong> (<em>AUv3</em>) MIDI plugin or
+          as a <strong>standalone</strong> (<em>CoreMIDI</em>) app
+        </li>
+        <li><strong>sample-accurate</strong> sequencing engine</li>
+        <li>slick and responsive <strong>native UI</strong></li>
+        <li>pattern snapshots <strong>selectable</strong> via MIDI input</li>
+        <li>
+          pitch playable by <strong>MIDI note input</strong> (arp and chord modes)
+        </li>
+        <li>
+          configurable <strong>tempo</strong>, <strong>scale</strong> and <strong
+            >key</strong
+          >
+        </li>
+        <li>
+          every channel can be routed to a separate <strong
+            >MIDI destination</strong
+          > and <strong>channel</strong>
+        </li>
+        <li>
+          every channel sends <strong>MIDI note- and pitch-bend data</strong> as
+          well as an arbitrary number of <strong>MIDI continuous control</strong
+          > (CC) messages
+        </li>
+        <li>full AUv3 <strong>state- and preset-saving</strong></li>
+        <li><strong>randomization</strong> features</li>
+        <li><strong>save</strong> and <strong>load</strong> patterns</li>
+        <li>
+          <strong>decoupled sequencer lanes</strong> for the following parameters:
+          <ul class="ml-6 list-disc">
+            <li>pulse</li>
+            <li>pitch</li>
+            <li>rest</li>
+            <li>step length</li>
+            <li>chance</li>
+            <li>velocity</li>
+            <li>accent</li>
+            <li>gate length</li>
+            <li>chance</li>
+            <li>ratchet (note repeat)</li>
+            <li>accidental (flatten/sharpen)</li>
+            <li>transpose</li>
+            <li>chord inversion</li>
+            <li>octave</li>
+            <li>harmonize</li>
+            <li>pitch bend</li>
+            <li>
+              mappable MIDI CC values (e.g., filter cutoff, resonance, envelope,
+              etc.)
+            </li>
+          </ul>
+        </li>
+        <li>
+          sequences can be instantly <strong>transformed</strong> by the following
+          actions:
+          <ul class="ml-6 list-disc">
+            <li>shift left/right/up/down</li>
+            <li>rotate</li>
+            <li>randomize</li>
+            <li>mutate</li>
+            <li>mirror</li>
+            <li>reverse</li>
+            <li>double</li>
+            <li>bisect</li>
+          </ul>
+        </li>
+        <li>
+          configurable <strong>clock division</strong> rate per sequencer lane
+        </li>
+        <li><strong>MIDI clock</strong> output</li>
+        <li>
+          <a
+            href="https://www.ableton.com/en/link/"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Ableton Link</a
+          > support
+        </li>
+        <li>
+          an <strong>offset</strong> can be added to timing to compensate for MIDI
+          latency
+        </li>
+        <li>works <strong>without internet connection</strong></li>
+        <li>no push notifications</li>
+        <li>no ads or in-app purchases</li>
+        <li>no third-party behavioural tracking tools</li>
+        <li>
+          ongoing development and support, many new features on the roadmap
+        </li>
+      </ul>
+    </section>
+    <br />
+    <section id="faq">
+      <p class="pt-8 pb-4 text-3xl font-bold">Frequently Asked Questions</p>
+      <div class="pt-4">
+        <p>
+          <strong>how does this work? is there a manual?</strong><br />yes, the
+          manual is <a
+            href="cykle/manual"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >here</a
+          >.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>what&#39;s wrong? why don&#39;t hear I anything?</strong><br
+          />cykle doesn&#39;t make any sound by itself. you will need to connect
+          to a MIDI-compatible synthesizer app on your device, load it in an
+          AUv3-compatible host (such as Audiobus or AUM) or connect it to an
+          external synthesizer, computer or any other sound generating device.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>how do I select a MIDI destination or channel?</strong><br
+          />swipe up on the <a
+            href="cykle-user-manual.html#channel-view"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >channel view</a
+          > and tap Output destination.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>are the snapshots MIDI controllable?</strong><br />yes, you
+          can switch snapshots by sending MIDI program changes (<em
+            >bank select</em
+          > 1-8) or MIDI pitches 1-8 to cykle&#39;s MIDI input.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>what is MIDI Input mode?</strong><br />an active MIDI input
+          mode allows you to control the pitch of a pattern via external MIDI
+          input, such as an external MIDI keyboard controller. select the MIDI
+          input source in the menu &gt; <em>Settings</em> &gt; <em
+            >MIDI Input source</em
+          >.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>how can I send MIDI CC messages?</strong><br />add a <em
+            >control</em
+          > sequence to your channel and select the desired control number by tapping
+          the label (74 - <em>Brightness</em>) on the cell.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>does cykle send MIDI clock?</strong><br />it does, clock
+          sending can be enabled via the Settings pane in the menu.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>can I export/import my patterns?</strong><br />cykle currently
+          doesn&#39;t support exporting or importing patterns. however, patterns
+          can be accessed and copied as raw files (.ckp) via File Sharing in
+          Finder/iTunes.
+        </p>
+      </div>
+      <div class="pt-4">
+        <p>
+          <strong>I have another question.</strong><br />send me <a
+            href="mailto:corne@cp3.io"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >an email</a
+          >.
+        </p>
+      </div>
+      <br />
+    </section>
+  </main>
+  <Footer />
+
+  <style>
+    #hero h1 {
+      @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    }
+    #hero p {
+      @apply my-2;
+    }
+  </style>
+</Layout>

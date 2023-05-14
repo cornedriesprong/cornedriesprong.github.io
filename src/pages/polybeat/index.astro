@@ -1,0 +1,223 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Footer from "@components/Footer.astro";
+import polybeat from "../../assets/polybeat.png";
+import appstore_light from "../../assets/appstore_light.svg";
+import appstore_dark from "../../assets/appstore_dark.svg";
+---
+
+<Layout pageTitle="polybeat">
+  <main id="main-content">
+    <section id="hero">
+      <h1><i>polybeat</i></h1>
+      <div class="mt-2 flex items-center gap-6">
+        <img
+          src={polybeat}
+          class="mb-0 h-[100px] w-[100px] rounded-xl"
+          alt="polybeat icon"
+        />
+        <p>
+          <b>polybeat</b> is an advanced and highly flexible <b
+            >drum and percussion sequencer</b
+          > for iOS, iPadOS and Mac (Catalyst) capable of generating complex and
+          intricate polyrhythmic and polymetric drum patterns.
+        </p>
+      </div>
+      <center>
+        <a
+          target="_blank"
+          href="https://apps.apple.com/us/app/polybeat/id1542598929"
+        >
+          <img
+            src={appstore_light}
+            class="my-8 w-[200px]"
+            alt="Download cykle on the Apple App Store"
+            id="app-store-light"
+          />
+          <img
+            src={appstore_dark}
+            class="my-8 w-[200px]"
+            alt="Download cykle on the Apple App Store"
+            id="app-store-dark"
+          />
+        </a>
+      </center>
+      <center
+        ><iframe
+          width="700"
+          height="500 "
+          class="mt-12 mb-8 rounded-xl"
+          src="https://www.youtube.com/embed/fk_44VAfXGQ"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe></center
+      >
+      <p class="pt-2 text-xl font-bold">More videos:</p>
+      <ul class="list-disc">
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=MH2_51Pg8KU"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >POLYBEAT - Polyrhythmic Drum Sequencer - UPDATED - Tutorial for the
+            iPad</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=Ou-cPhWBSek"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Polybeat - Polyrhythmic Drum Sequencer - Tutorial for the iPad</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=U1jKh5q1iO4"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Polybeat - A polyrhythmic drum sequencer for iOS</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=gKoBkLvibVA"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >PolyBeat step length - 1 minute demonstration</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/watch?v=5JErjYkfIlI"
+            target="_blank"
+            class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+            >Mangling breakbeats in AUM with Koala, Polybeat and Mozaic
+            Eucalyptus</a
+          >
+        </li>
+      </ul>
+      <br />
+    </section>
+    <section id="reviews">
+      <p class="pt-8 pb-4 text-3xl font-bold">Reviews</p>
+      <div class="pt-4">
+        <strong>&quot;A pleasure to use&quot;</strong>
+        <strong>★★★★★</strong><br />&quot;<em
+          >(...) this is already a very capable app thats really nice to use and
+          before you know it you&#39;ll be making loads of fun and interesting
+          patterns so do yourself a favour and download it</em
+        >&quot; — App Store Review
+      </div>
+      <div class="pt-4">
+        <strong>&quot;The best drum sequencer&quot;</strong>
+        <strong>★★★★★</strong> — App Store Review
+      </div>
+      <div class="pt-4">
+        <strong>&quot;Brings drums to life&quot;</strong>
+        <strong>★★★★★</strong><br />&quot;<em
+          >You can take the most boring of drum loops and bring them to life
+          with this tool</em
+        >&quot; — App Store Review
+      </div>
+      <div class="pt-4">
+        <strong>&quot;Wonderful app&quot;</strong>
+        <strong>★★★★★</strong><br />&quot;<em
+          >Thanks for this great app with so many possibilities</em
+        >&quot; — App store review
+      </div>
+      <div class="pt-4">
+        <strong>&quot;Intuitive, useful and fun!&quot;</strong>
+        <strong>★★★★★</strong><br />&quot;<em
+          >Where Polybeat stands out from other AU3 controller apps is that
+          everything is easily accessible and intuitive. It's both fun to use
+          and usefully functional. (...)</em
+        >&quot; — App Store Review
+      </div>
+      <br />
+    </section>
+    <section id="features">
+      <p class="pt-8 pb-4 text-3xl font-bold">Features</p>
+      <ul class="list-disc">
+        <li>4.8-star average rating on the App Store <strong>★★★★★</strong></li>
+        <li>
+          independently configurable <strong>sequence length</strong> per drum voice
+          (1-32 steps)
+        </li>
+        <li>
+          independently configurable <strong>step length</strong> per drum voice
+          (double whole note - 64th notes, including tuplets and dotted notes)
+        </li>
+        <li>
+          every sequencer step can be <strong>modulated</strong> by the following
+          attributes:
+          <ul class="ml-6 list-disc">
+            <li>accent on/off</li>
+            <li>velocity</li>
+            <li>ratchet (note repeats)</li>
+            <li>skip (...note every <em>n</em> loops)</li>
+            <li>chance</li>
+            <li>timing offset</li>
+            <li>MIDI CC</li>
+          </ul>
+        </li>
+        <li><strong>sample-accurate</strong> sequencing engine</li>
+        <li>slick and responsive <strong>native UI</strong></li>
+        <li>
+          indidividual drum voices can be <strong>muted</strong> or <strong
+            >solo&#39;ed</strong
+          >
+        </li>
+        <li>
+          sequences can be instantly <strong>transformed</strong> by the following
+          actions:
+          <ul class="ml-6 list-disc">
+            <li>shift left/right</li>
+            <li>rotate</li>
+            <li>randomize</li>
+            <li>mirror</li>
+            <li>reverse</li>
+            <li>double</li>
+            <li>bisect</li>
+          </ul>
+        </li>
+        <li>full AUv3 <strong>preset- and state-saving</strong></li>
+        <li>
+          ability to <strong>copy/paste</strong> patterns between instances of the
+          plugin
+        </li>
+        <li>
+          <strong>mapping presets</strong> for common AUv3 drum apps and hardware
+          drum machines
+        </li>
+        <li>
+          includes <strong>musical scale presets</strong> for polybeat to be used
+          as a melodic sequencer
+        </li>
+        <li>
+          responds to <strong>MIDI input</strong> for switching and selecting patterns,
+          as well as performing pattern transformations
+        </li>
+        <li>works <strong>offline</strong></li>
+        <li><strong>no push notifications</strong></li>
+        <li><strong>no ads</strong></li>
+        <li><strong>no third-party behavioural tracking tools</strong></li>
+        <li>
+          <strong>ongoing development and support</strong>, many new features on
+          the roadmap
+        </li>
+      </ul>
+      <br />
+    </section>
+    <Footer />
+  </main>
+  <style>
+    #hero h1 {
+      @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    }
+    #hero p {
+      @apply my-2;
+    }
+  </style>
+</Layout>
