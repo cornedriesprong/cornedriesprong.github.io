@@ -13,7 +13,7 @@ description: How to obtain sample accurate MIDI timing in the context of AUv3 pl
 
 ## Preface
 
-One of the biggest technical challenges I faced while building my MIDI sequencer AUv3[^1] plugins **[cykle](cykle)** and **[polybeat](polybeat)** was obtaining sample-accurate MIDI sequencing. Ensuring precise MIDI event timing on a sample-level is crucial for accurate playback. Since not all AUv3 plugins appear to do this correctly[^2], I've written this post to explain how I do these calculations in my apps.
+One of the biggest technical challenges I faced while building my MIDI sequencer AUv3[^1] plugins **[cykle](https://cp3.io/cykle)** and **[polybeat](https://cp3.io/polybeat)** was obtaining sample-accurate MIDI sequencing. Ensuring precise MIDI event timing on a sample-level is crucial for accurate playback. Since not all AUv3 plugins appear to do this correctly[^2], I've written this post to explain how I do these calculations in my apps.
 
 A Github repository containing the code from this article can be found <a href="https://github.com/cornedriesprong/AUv3SequencerExample" target="_blank">here</a>.
 

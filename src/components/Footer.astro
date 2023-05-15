@@ -13,7 +13,7 @@ const { noMarginTop = false } = Astro.props;
   <Hr noPadding />
   <div class="footer-wrapper">
     <div class="wrapper">
-      <a href="/privacy" title="Privacy Policy" target="_blank">
+      <a class="text-sm" href="/privacy" title="Privacy Policy" target="_blank">
         Privacy Policy
       </a>
     </div>
@@ -22,6 +22,7 @@ const { noMarginTop = false } = Astro.props;
       <span
         >© {currentYear}
         <a
+          class="text-sm"
           href="https://creativecommons.org/licenses/by/4.0/"
           title="Creative Commons License 4.0"
           target="_blank"
@@ -38,7 +39,7 @@ const { noMarginTop = false } = Astro.props;
     @apply w-full;
   }
   .footer-wrapper {
-    @apply flex flex-col items-center justify-end gap-4 py-2 sm:flex-row sm:py-2;
+    @apply flex flex-row items-center justify-end gap-4 py-2;
   }
   .link-button {
     @apply my-1 p-2 hover:rotate-6;
@@ -47,7 +48,7 @@ const { noMarginTop = false } = Astro.props;
     @apply scale-125;
   }
   .wrapper {
-    @apply my-2 flex flex-col items-center whitespace-nowrap sm:flex-row;
+    @apply my-2 flex flex-col items-center sm:flex-row;
   }
   .separator {
     @apply hidden sm:inline;
