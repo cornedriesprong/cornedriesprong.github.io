@@ -1,11 +1,11 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://astro-paper.pages.dev/",
+  website: "https://cp3.io/",
   author: "Corné Driesprong",
-  desc: "Personal website of Corné Driesprong",
+  desc: "This is my personal website where I write about things I learn and show the projects I work on",
   title: "cp3.io",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "cp3-og.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
 };
