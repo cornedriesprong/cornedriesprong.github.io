@@ -75,7 +75,24 @@ const socialImageURL = new URL(
         />
       )
     }
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-84270008-1"
+    ></script>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZZ27G3Z71"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-PZZ27G3Z71");
+    </script>
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
