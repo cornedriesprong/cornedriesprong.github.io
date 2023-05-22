@@ -102,7 +102,7 @@ for (int i = 0; i < sequence.eventCount; i++) {
 
 We calculate the offset by subtracting the sample time at the render cycle's start (modulo the sequencer loop's length) from the event timestamp (in samples). This provides the exact offset to add to the absolute sample time at the render cycle's beginning (timestamp->mSampleTime) for a sample-accurate timestamp passed to the host.
 
-_Sidenote: consider collecting all the current render cycle's events and calling the midiOutputBlock only once. Note that, depending on buffer size and MIDI event density, multiple output block calls within a single render cycle might be needed if events with different timestamps occur in the same cycle[^5]. For simplicity, these considerations are omitted here._
+> consider collecting all the current render cycle's events and calling the midiOutputBlock only once. Note that, depending on buffer size and MIDI event density, multiple output block calls within a single render cycle might be needed if events with different timestamps occur in the same cycle[^5]. For simplicity, these considerations are omitted here.
 
 Now the events should be timestamped correctly, however you may observe some skipped events. This happens when a sequencer loop transition occurs during a render cycle (i.e., bufferStartTime is later than bufferEndTime due to loop wrapping), and events for the next loop's beginning should already be scheduled. This can be addressed as follows:
 
