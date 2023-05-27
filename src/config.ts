@@ -40,7 +40,7 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/cornedriesprong/",
+    href: "https://www.instagram.com/cp3.io",
     linkTitle: "Instagram",
     active: true,
   },
