@@ -116,10 +116,7 @@
             y = ~y + (x - ~y) * 0.001
           </script>
         </li>
-        <li>
-          declarative language for defining audio graphs (including music
-          gestures?)
-        </li>
+        <li>declarative language for defining audio graphs</li>
         <li>written in Rust 🦀</li>
       </ul>
     </section>
@@ -188,11 +185,15 @@
                 >
                 (MIT)
               </li>
+              <li>non-rigorous approach</li>
             </ul>
           </ul>
         </div>
         <div>
-          <img src="assets/absynth.jpg" alt="Absynth" />
+          <center>
+            <img src="assets/absynth.jpg" alt="Absynth" />
+            <p>Absynth (Native Instruments)</p>
+          </center>
         </div>
       </div>
     </section>
@@ -213,11 +214,11 @@
           <li>encourage happy accidents</li>
         </ul>
         <br \ />
-        <li>minimal syntax</li>
+        <li>minimal yet expressive syntax</li>
         <script type="text/ohm" muted>
           // synth voice
           voice = |freq|
-            saw freq -> lp 1500 * 0.5
+            saw freq -> lp 500 * 0.5
         </script>
         <br \ />
         <li>modular / composable</li>
@@ -234,7 +235,7 @@
       <h2>syntax</h2>
       <h3>Lisp</h3>
       <script type="text/ohm" inline static>
-        (* (lp (saw 200) 1500) 0.5)
+        (* (lp (saw 200) 500) 0.5)
       </script>
       <ul>
         <li>S-expressions</li>
@@ -249,7 +250,7 @@
       <h2>syntax</h2>
       <h3>Forth</h3>
       <script type="text/ohm" inline static>
-        200 saw 1500 lp 0.5 *
+        200 saw 500 lp 0.5 *
       </script>
       <ul>
         <li><b>postfix</b> / reverse Polish notation (RPN)</li>
@@ -319,15 +320,16 @@
     <section class="slide">
       <h2>some uses for signals</h2>
       <p>
-        <b>sound</b>
+        <b>1. sound</b>: oscillate between -1 and 1
         <script type="text/ohm">
-          voice 200 * 0.5
+          voice 200
         </script>
       </p>
       <p>
-        <b>parameter control</b>
+        <b>2. parameter control</b>: static value or modulation
         <script type="text/ohm">
-          voice (200 + lfo 0.5 * 100)
+          freq = 200 + lfo 0.5 * 20
+          voice freq
         </script>
       </p>
     </section>
@@ -362,10 +364,9 @@
           </li>
           <li><b>generative</b> sequencing:</li>
           <script type="text/ohm">
-            env = (sin 4 + sin 5) / 2 > 0
+            env = (sin 4 + sin 5) / 2 > 0 -> lp1
             voice 200 * env * 0.5
           </script>
-          <li><b>feedback</b> patches</li>
         </ul>
       </div>
     </section>
@@ -544,7 +545,7 @@
         clock -> <300 400 500> -> voice
       </script>
       <script type="text/ohm">
-        cutoff = <1000 200 2500> -> lp1
+        cutoff = <100 500 2000> -> lp1
         <300 400 500> -> voice -> lp cutoff
       </script>
     </section>
@@ -561,17 +562,9 @@
         voice <300 <400 500>>
       </script>
 
-      <p><b>ties</b></p>
-      <script type="text/ohm">
-        voice <300 ~ <_ 500>>
-      </script>
       <p>sequences can contain any expression:</p>
       <script type="text/ohm">
         voice <(lfo * 500) (lfo * 400)>
-      </script>
-      <p><b>ranges</b></p>
-      <script type="text/ohm">
-        voice <300 <400..500>>
       </script>
     </section>
 
@@ -624,7 +617,7 @@
         map = |seq f|
       </script>
       <script type="text/ohm">
-        map {300 400} |n| + 10
+        map {300 400} |n| n + 10
       </script>
       <p>
         (equivalent to
@@ -634,7 +627,7 @@
         )
       </p>
       <script type="text/ohm">
-        map <300 400> |n| voice n * (1 - clock) ^ 2
+        map <300 400 500> |n| voice n * (1 - clock) ^ 2
       </script>
     </section>
 
@@ -642,7 +635,7 @@
       <h2>stack / sequence: nesting</h2>
       <p>stacks can be <b>nested</b> in sequences:</p>
       <script type="text/ohm">
-        clock / 3 -> <Asus2 Fmaj7 Cmaj7> -> voice -> mix * 0.3
+        clock / 3 -> <Asus2 Fmaj7 Cmaj7 Cmaj7> -> voice -> mix * 0.3
       </script>
       <p>...or vice versa:</p>
       <script type="text/ohm">
@@ -668,10 +661,12 @@
                 y = ~y + (x - ~y) * 0.001
               </script>
             </li>
+            <br \ />
             <li><code>~x</code> is equivalent to <code>~x[1]</code></li>
             <li><code>~x[n]</code> for arbitrary delays</li>
             <li>
-              <code>n</code> can be fractional, .e.g: <code>~x[1.2]</code>
+              <code>n</code> can be fractional, .e.g: <code>~x[1.2]</code
+              ><br \ />(e.g., vibrato, chorus, Karplus-Strong)
             </li>
           </ul>
         </div>
@@ -695,7 +690,7 @@
       <script type="text/ohm">
         fb = lfo 0.25 * 0.4
         x = sin 100 (~x * fb)
-        x * 0.4
+        x * 0.2
       </script>
 
       <h3>cross-modulation</h3>
@@ -704,7 +699,7 @@
         {root, third} = Am7
         x = sin root (~y * fb)
         y = sin third (~x * fb)
-        {x y} * 0.4
+        {x y} * 0.2
       </script>
     </section>
 
@@ -721,7 +716,7 @@
     <section class="slide">
       <div class="columns">
         <div>
-          <h2>lex</h2>
+          <h2>1. lex</h2>
           <br \ />
           <script type="text/ohm" inline static>
             saw {110 220} * 0.5 -> mix
@@ -747,7 +742,7 @@
     <section class="slide">
       <div class="columns">
         <div>
-          <h2>parse</h2>
+          <h2>2. parse</h2>
           <br \ />
           <script type="text/ohm" inline static>
             saw {110 220} * 0.5 -> mix
@@ -777,7 +772,7 @@
     <section class="slide">
       <div class="columns">
         <div>
-          <h2>resolve</h2>
+          <h2>3. resolve</h2>
           <br \ />
           <script type="text/ohm" inline static>
             saw {110 220} * 0.5 -> mix
@@ -785,7 +780,7 @@
           <br \ />
           <br \ />
           <ul>
-            <li>inline function calls (builtin or user-defined)</li>
+            <li>inline function calls (built-in or user-defined)</li>
             <li><b>IR</b>: subset of AST (minus calls and bindings)</li>
           </ul>
         </div>
@@ -796,7 +791,7 @@
     <section class="slide">
       <div class="columns">
         <div>
-          <h2>expand</h2>
+          <h2>4. expand</h2>
           <br \ />
           <script type="text/ohm" inline static>
             saw {110 220} * 0.5 -> mix
@@ -812,7 +807,7 @@
     <section class="slide">
       <div class="columns">
         <div>
-          <h2>compile</h2>
+          <h2>5. compile</h2>
           <br \ />
           <script type="text/ohm" inline static>
             saw {110 220} * 0.5 -> mix
@@ -833,7 +828,7 @@
     <section class="slide">
       <div class="columns">
         <div>
-          <h2>render</h2>
+          <h2>6. render</h2>
           <br \ />
           <script type="text/ohm" inline static>
             saw {110 220} * 0.5 -> mix
