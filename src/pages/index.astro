@@ -31,28 +31,30 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         aria-label="rss feed"
         title="RSS Feed"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
-          ><path
-            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-          ></path><path
-            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-          ></path><circle cx="6" cy="18" r="2"></circle>
+        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon">
+          <path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"></path>
+          <path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"></path>
+          <circle cx="6" cy="18" r="2"></circle>
         </svg>
       </a>
       <p>
-        Hi 👋 My name is Corné. I work as a <a
+        Hi 👋 My name is Corné. I work as a{" "}
+        <a
           class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
           target="_blank"
           href="https://github.com/cornedriesprong"
         >
-          software developer</a
-        > & in my free time I like to <a
+          software developer
+        </a>{" "}
+        & in my free time I like to{" "}
+        <a
           class="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
           target="_blank"
           href="https://soundcloud.com/sleeprites"
         >
-          make music</a
-        >.
+          make music
+        </a>
+        .
       </p>
       <p>
         This is my personal website where I write about things I learn and show
@@ -62,7 +64,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           href="/about"
         >
           about page
-        </LinkButton> for more info.
+        </LinkButton>{" "}
+        for more info.
       </p>
       {
         // only display if at least one social link is enabled
@@ -77,26 +80,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     <section id="recent-posts">
       <p class="mt-4 mb-8 text-3xl font-bold">Posts</p>
       <ul>
-        {
-          sortedPosts.map(
-            ({ data }, index) =>
-              index < 4 && (
-                <Card
-                  href={`/posts/${slugify(data)}`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              )
-          )
-        }
+        {sortedPosts.map(
+          ({ data }, index) =>
+            index < 4 && (
+              <Card
+                href={`/posts/${slugify(data)}`}
+                frontmatter={data}
+                secHeading={false}
+              />
+            )
+        )}
       </ul>
       <div class="all-posts-btn-wrapper">
         <LinkButton href="/posts">
           All Posts
-          <svg xmlns="http://www.w3.org/2000/svg"
-            ><path
-              d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-            ></path>
+          <svg xmlns="http://www.w3.org/2000/svg">
+            <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
           </svg>
         </LinkButton>
       </div>
@@ -106,10 +105,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       <p class="mt-4 mb-8 text-3xl font-bold">Projects</p>
       <div class="mb-6 flex flex-row flex-wrap gap-8">
         <a href="/polybeat" target="_blank" class="text-lg font-bold">
-          <div
-            class="border-black w-[350px] overflow-hidden rounded-xl border p-0 hover:rotate-1"
-          >
-            <img src={polybeat_screenshot} />
+          <div class="border-black w-[350px] overflow-hidden rounded-xl border p-0 hover:rotate-1">
+            <img src={polybeat_screenshot.src} />
             <div class="p-4">
               <p>polybeat</p>
               <p class="text-sm font-light">
@@ -121,10 +118,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
         </a>
         <a href="/cykle" target="_blank" class="text-lg font-bold">
-          <div
-            class="border-black w-[350px] overflow-hidden rounded-xl border p-0 hover:rotate-1"
-          >
-            <img src={cykle_screenshot} />
+          <div class="border-black w-[350px] overflow-hidden rounded-xl border p-0 hover:rotate-1">
+            <img src={cykle_screenshot.src} />
             <div class="p-4">
               <p>cykle</p>
               <p class="text-sm font-light">
@@ -146,7 +141,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <style>
   /* ===== Hero Section ===== */
   #hero {
-    @apply pt-8 pb-6;
+    @apply pb-6 pt-8;
   }
   #hero h1 {
     @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
@@ -170,7 +165,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   /* ===== Featured & Recent Posts Sections ===== */
   #featured,
   #recent-posts {
-    @apply pt-12 pb-6;
+    @apply pb-6 pt-12;
   }
   #featured h2,
   #recent-posts h2 {

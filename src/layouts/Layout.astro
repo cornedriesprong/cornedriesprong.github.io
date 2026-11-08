@@ -28,7 +28,7 @@ const socialImageURL = new URL(
 ).href;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -82,9 +82,11 @@ const socialImageURL = new URL(
     ></script>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZZ27G3Z71"
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-PZZ27G3Z71"
     ></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 989 109" width="989" height="109">
+<style>text{font:16px ui-monospace,"SF Mono",Menlo,monospace;fill:#1d1b18;text-anchor:middle;dominant-baseline:central}.edge{fill:#ed5d55;font-size:14px}.head{fill:#77716a;font-size:14px}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9d3c6"/></marker></defs>
+<rect x="798.4" y="10" width="113.6" height="89.0" fill="none" stroke="#d9d3c6"/>
+<rect x="68.4" y="10" width="637.2" height="89.0" fill="none" stroke="#d9d3c6"/>
+<line x1="10.0" y1="66.0" x2="84.4" y2="66.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="edge" x="39.2" y="50.0">&amp;str</text>
+<rect x="84.4" y="49.0" width="52.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="110.8" y="66.0">lex</text>
+<line x1="137.2" y1="66.0" x2="221.4" y2="66.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="edge" x="179.3" y="50.0">[Token]</text>
+<rect x="221.4" y="49.0" width="72.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="257.4" y="66.0">parse</text>
+<line x1="293.4" y1="66.0" x2="343.2" y2="66.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="edge" x="318.3" y="50.0">AST</text>
+<rect x="343.2" y="49.0" width="91.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="388.8" y="66.0">resolve</text>
+<line x1="434.4" y1="66.0" x2="475.6" y2="66.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="edge" x="455.0" y="50.0">IR</text>
+<rect x="475.6" y="49.0" width="81.6" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="516.4" y="66.0">expand</text>
+<line x1="557.2" y1="66.0" x2="598.4" y2="66.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="edge" x="577.8" y="50.0">IR</text>
+<rect x="598.4" y="49.0" width="91.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="644.0" y="66.0">compile</text>
+<text class="head" x="387.0" y="26">language</text>
+<line x1="689.6" y1="66.0" x2="814.4" y2="66.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="edge" x="752.0" y="50.0">[OpCode]</text>
+<text class="head" x="752.0" y="82.0">mpsc</text>
+<rect x="814.4" y="49.0" width="81.6" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="855.2" y="66.0">render</text>
+<text class="head" x="855.2" y="26">runtime</text>
+<line x1="896.0" y1="66.0" x2="979.0" y2="66.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="edge" x="945.5" y="50.0">[f32]</text>
+</svg>

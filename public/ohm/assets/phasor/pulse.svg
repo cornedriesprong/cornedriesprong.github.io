@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 270" width="470" height="270">
+<style>text{font:20px ui-monospace,"SF Mono",Menlo,monospace;fill:#1d1b18;text-anchor:middle}</style>
+<rect x="10" y="10" width="450" height="200" fill="none" stroke="#d9d3c6"/>
+<path d="M10.00,210 L160.00,10 M160.00,210 L310.00,10 M310.00,210 L460.00,10" fill="none" stroke="#d9d3c6" stroke-dasharray="4 4"/>
+<clipPath id="box"><rect x="10" y="10" width="450" height="200"/></clipPath>
+<path d="M10.00,210 L10.00,10 L25.00,10 L25.00,210 L160.00,210 L160.00,10 L175.00,10 L175.00,210 L310.00,210 L310.00,10 L325.00,10 L325.00,210 L460.00,210" clip-path="url(#box)" fill="none" stroke="#ed5d55" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="235.0" y="243" style="font-size:20.0px">clock &lt; 0.1</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 662 118" width="662" height="118">
+<style>text{font:16px ui-monospace,"SF Mono",Menlo,monospace;fill:#1d1b18;text-anchor:middle;dominant-baseline:central}.edge{fill:#ed5d55;font-size:14px}.head{fill:#77716a;font-size:14px}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9d3c6"/></marker></defs>
+<rect x="492.4" y="10.0" width="79.2" height="98.0" fill="none" stroke="#d9d3c6"/>
+<rect x="10.0" y="10.0" width="362.4" height="98.0" fill="none" stroke="#d9d3c6"/>
+<rect x="28.0" y="56.0" width="72.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="64.0" y="73.0">parse</text>
+<rect x="136.0" y="56.0" width="91.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="181.6" y="73.0">resolve</text>
+<line x1="100.0" y1="73.0" x2="136.0" y2="73.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="263.2" y="56.0" width="91.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="308.8" y="73.0">compile</text>
+<line x1="227.2" y1="73.0" x2="263.2" y2="73.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<text class="head" x="191.2" y="34.0">language</text>
+<rect x="510.4" y="56.0" width="43.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="532.0" y="73.0">VM</text>
+<text class="head" x="532.0" y="34.0">runtime</text>
+<line x1="372.4" y1="73.0" x2="492.4" y2="73.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="394.0" y="45.0" width="76.8" height="20" fill="#f7f5f0"/>
+<text class="edge" x="432.4" y="55.0">hot swap</text>
+<line x1="571.6" y1="73.0" x2="651.6" y2="73.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="586.1" y="45.0" width="51.0" height="20" fill="#f7f5f0"/>
+<text class="edge" x="611.6" y="55.0">audio</text>
+</svg>

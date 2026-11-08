@@ -1,0 +1,73 @@
+<style>
+  #p5-sketch-container {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 500px;
+    top: 0;
+  }
+  .sine-wave {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+  }
+</style>
+
+<div id="p5-sketch-container"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+
+<script type="module">
+  new p5(p => {
+    const width = 1600;
+    const height = 400;
+    const c1 = "#ED5C55";
+    const c3 = "#FFC836";
+    const c5 = "#41B153";
+    const c6 = "#31C093";
+    const c9 = "#6A91D4";
+    const c12 = "#E25B9D";
+
+    const colors = [c1, c3, c6, c12, c9, c5];
+
+    const drawWave = (time, color, frequency, amplitude, phase, yOffset) => {
+      p.stroke(color);
+      p.beginShape();
+      let points = [];
+      const offset = 30;
+      for (let i = 0; i < width; i++) {
+        let h1 =
+          amplitude * p.sin(frequency * i + phase + time) + amplitude + offset;
+        let point = h1; // apply extra smoothing
+        points.push(point + yOffset);
+      }
+      for (let i = 0; i < points.length; i++) {
+        p.vertex(i, points[i]);
+      }
+      p.endShape();
+    };
+
+    p.setup = () => {
+      const canvas = p.createCanvas(width, height);
+      canvas.parent("p5-sketch-container");
+
+      p.noFill();
+      p.strokeWeight(2);
+    };
+
+    let t = 0; // time
+
+    p.draw = () => {
+      p.clear();
+      for (let i = 0; i < colors.length; i++) {
+        const color = colors[i];
+        const frequency = 0.001 * i + 0.01;
+        const amplitude = 17;
+        const phase = i * 120;
+        const yOffset = i * amplitude;
+        drawWave(t, color, frequency, amplitude, phase + i * 5, yOffset);
+      }
+
+      t += 0.015;
+    };
+  });
+</script>

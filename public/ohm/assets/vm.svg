@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 657 418" width="657" height="418">
+<style>text{font:16px ui-monospace,"SF Mono",Menlo,monospace;fill:#1d1b18;text-anchor:middle;dominant-baseline:central}.edge{fill:#ed5d55;font-size:14px}.head{fill:#77716a;font-size:14px}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9d3c6"/></marker></defs>
+<text class="head" x="85.6" y="20.0">opcodes</text>
+<rect x="40.0" y="40.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="54.0">Num 110</text>
+<rect x="40.0" y="74.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="88.0">Num 0</text>
+<rect x="40.0" y="108.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="122.0">Osc Saw</text>
+<rect x="40.0" y="142.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="156.0">Num 0.5</text>
+<rect x="40.0" y="176.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="190.0">Mul</text>
+<rect x="40.0" y="210.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="224.0">Num 220</text>
+<rect x="40.0" y="244.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="258.0">Num 0</text>
+<rect x="40.0" y="278.0" width="91.2" height="28.0" fill="none" stroke="#ed5d55" stroke-width="2"/>
+<text x="85.6" y="292.0">Osc Saw</text>
+<rect x="40.0" y="312.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="326.0">Num 0.5</text>
+<rect x="40.0" y="346.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="360.0">Mul</text>
+<rect x="40.0" y="380.0" width="91.2" height="28.0" fill="none" stroke="#d9d3c6"/>
+<text x="85.6" y="394.0">Mix 2</text>
+<text class="edge" x="20.0" y="292.0">pc</text>
+<text class="head" x="474.0" y="20.0">state</text>
+<rect x="301.2" y="40.0" width="244.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<rect x="546.0" y="40.0" width="100.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="423.6" y="57.0">output/0/item/0/lhs/osc</text>
+<text x="596.4" y="57.0">0.10229</text>
+<rect x="301.2" y="74.0" width="244.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<rect x="546.0" y="74.0" width="100.8" height="34.0" fill="none" stroke="#ed5d55"/>
+<text x="423.6" y="91.0">output/0/item/1/lhs/osc</text>
+<text x="596.4" y="91.0">0.25000</text>
+<text class="head" x="341.2" y="218.0">stack</text>
+<rect x="301.2" y="374.0" width="80.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="341.2" y="391.0">0.4</text>
+<rect x="301.2" y="340.0" width="80.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="341.2" y="357.0">220</text>
+<rect x="301.2" y="306.0" width="80.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="341.2" y="323.0">0</text>
+<rect x="301.2" y="272.0" width="80.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<rect x="301.2" y="238.0" width="80.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<line x1="131.2" y1="292.0" x2="301.2" y2="91.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="160.6" y="181.5" width="111.2" height="20" fill="#f7f5f0"/>
+<text class="edge" x="216.2" y="191.5">read · write</text>
+<line x1="131.2" y1="292.0" x2="301.2" y2="323.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="169.2" y="297.5" width="94.0" height="20" fill="#f7f5f0"/>
+<text class="edge" x="216.2" y="307.5">pop · push</text>
+</svg>

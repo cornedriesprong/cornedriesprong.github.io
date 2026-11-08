@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ohm</title>
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body data-ohm-audio="on">
+    <!-- each <section class="slide"> is a slide; each <script type="text/ohm"> a playable snippet -->
+
+    <!-- insert ADC slide -->
+
+    <section class="slide title">
+      <h1>ohm</h1>
+      <p class="muted">a small language for pattern & sound</p>
+      <p class="muted" style="font-size: 0.6em; margin-top: 2em">
+        <kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>⌘</kbd><kbd>↵</kbd> play /
+        reload · <kbd>⌘</kbd><kbd>.</kbd> stop
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>overview</h2>
+      <ul>
+        <li>design</li>
+        <ul>
+          <li>design goals</li>
+          <li>syntax</li>
+          <li>features</li>
+        </ul>
+        <br />
+        <li>technical implementation</li>
+        <ul>
+          <li>lexer / parser</li>
+          <li>compiler</li>
+          <li>virtual machine</li>
+        </ul>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <img src="assets/cor.webp" alt="me" />
+        </div>
+        <div>
+          <h3>about me</h3>
+          <ul>
+            <li>freelance software developer (Audiomovers)</li>
+            <li>Groningen, the Netherlands</li>
+            <li>musicology</li>
+            <li>self-taught</li>
+            <li>iOS, web, C++, Rust</li>
+            <li>cykle / polybeat</li>
+            <li>guitar / drums</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <img src="assets/cykle.png" alt="cykle" />
+        </div>
+        <div>
+          <img src="assets/polybeat.png" alt="polybeat" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>ohm</h2>
+      <i>"ohm is a live coding language for sound and music"</i>
+    </section>
+
+    <section class="slide">
+      <center>
+        <img src="assets/live-coding.jpeg" alt="live coding" />
+        <p>Alex McLean (<i>TidalCycles</i>)</p>
+      </center>
+    </section>
+
+    <!-- <section class="slide"> -->
+    <!--   <h2>ohm</h2> -->
+    <!--   <ul> -->
+    <!--     <li>version 1: Koto, FunDSP</li> -->
+    <!--     <li>version 2: C</li> -->
+    <!--     <li>version 3: no dependencies*, virtual machine</li> -->
+    <!--   </ul> -->
+    <!--   <p class="footnote"> -->
+    <!--     <sup>*</sup> except -->
+    <!--     <script type="text/ohm" inline static> -->
+    <!--       strum -->
+    <!--     </script> -->
+    <!--     and -->
+    <!--     <script type="text/ohm" inline static> -->
+    <!--       anyhow -->
+    <!--     </script> -->
+    <!--   </p> -->
+    <!-- </section> -->
+
+    <section class="slide">
+      <img src="assets/overview.svg" alt="overview" />
+      <br \ />
+      <ul>
+        <li>programming language</li>
+        <li>runtime + virtual machine</li>
+        <ul>
+          <li>hot swapping / live editing</li>
+        </ul>
+        <li>
+          working with sound at the <b>sample level</b>: <br \ />
+          <script type="text/ohm" inline static>
+            y = ~y + (x - ~y) * 0.001
+          </script>
+        </li>
+        <li>
+          declarative language for defining audio graphs (including music
+          gestures?)
+        </li>
+        <li>written in Rust 🦀</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <pre class="terminal"><code><span>$</span> ./ohm patch.ohm</code></pre>
+      <ul>
+        <li>executable binary</li>
+        <li>
+          watches
+          <script type="text/ohm" inline static>
+            .ohm
+          </script>
+          file
+        </li>
+        <li>WebAssembly</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>demo time!</h2>
+      <script type="text/ohm">
+        raw = ~p + ~rate / sr
+        tick = raw >= 1
+        p = raw - tick
+        c = ~c + tick
+
+        k = 5
+        d = floor (voss tick c * 5) + k * 4
+        semi = floor (d / k) * 12 + floor (d % k * 12 / k) - 48
+        freq = 220 * 2 ^ (semi / 12)
+
+        mult = 2 ^ min (max (floor (voss tick c * 2 + 1)) 0) 2
+        rate = 8 / mult
+
+        cutoff = 200 * 2 ^ ((voss tick c + 1) * 2.5)
+
+        g = max tick (~g * (1 - rate / (sr * 0.5)))
+        out = pluck freq tick 0.999 -> lp (50 + cutoff * g * g) * g * 0.5
+
+        bus1 = out * 0.5 -> reverb
+        bus2 = out * 0.5 -> bbd
+        out + bus1 + bus2
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>motivation</h2>
+      <div class="columns">
+        <div>
+          <ul>
+            <li><i>why make an audio programming language?</i></li>
+            <ul>
+              <li>fun!</li>
+              <li>flexibility / malleability</li>
+              <li>building UIs is a lot work!</li>
+            </ul>
+            <br \ />
+            <li>research project</li>
+            <ul>
+              <li>built for myself</li>
+              <li>inspire others</li>
+              <li>
+                <a href="https://github.com/cornedriesprong/ohm" target="_blank"
+                  >open source</a
+                >
+                (MIT)
+              </li>
+            </ul>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/absynth.jpg" alt="Absynth" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <center><img src="assets/robot.png" alt="AI robot" /><sup>*</sup></center>
+      <p class="footnote">
+        <sup>*</sup> Illustrations by
+        <a href="https://cp3.io" target="_blank">Anne Stalinski</a>.
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>design goals</h2>
+      <ul>
+        <li>improvisation</li>
+        <ul>
+          <li>encourage happy accidents</li>
+        </ul>
+        <br \ />
+        <li>minimal syntax</li>
+        <script type="text/ohm" muted>
+          // synth voice
+          voice = |freq|
+            saw freq -> lp 1500 * 0.5
+        </script>
+        <br \ />
+        <li>modular / composable</li>
+        <script type="text/ohm" muted>
+          // voice + envelope
+          synth = |freq|
+            env = 1 - clock
+            voice freq * env
+        </script>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>syntax</h2>
+      <h3>Lisp</h3>
+      <script type="text/ohm" inline static>
+        (* (lp (saw 200) 1500) 0.5)
+      </script>
+      <ul>
+        <li>S-expressions</li>
+        <li><b>prefix</b> / Polish notation</li>
+        <li>easy to parse</li>
+        <li>hard to read (inside out)</li>
+        <li>lots of parentheses</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>syntax</h2>
+      <h3>Forth</h3>
+      <script type="text/ohm" inline static>
+        200 saw 1500 lp 0.5 *
+      </script>
+      <ul>
+        <li><b>postfix</b> / reverse Polish notation (RPN)</li>
+        <li>trivial to parse</li>
+        <li>maps to (virtual) machine instructions</li>
+        <li>maps to signal flow</li>
+        <li>write-only?</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>syntax</h2>
+      <h3>ohm</h3>
+      <script type="text/ohm" inline static>
+        lp (saw 200) 1000 * 0.5
+      </script>
+      <ul>
+        <li><b>infix</b> notation</li>
+        <li>no parentheses in function calls (ML, Haskell, Ruby)</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>syntax</h2>
+      <h3>
+        pipe operator:
+        <script type="text/ohm" inline static>
+          ->
+        </script>
+      </h3>
+      <script type="text/ohm" inline static>
+        saw 200 -> lp 1000 * 0.5
+      </script>
+      <ul>
+        <li>F#, Elixir, OCaml, Koto, etc.</li>
+        <li>output of lhs gets applied as <b>first</b> argument to the rhs</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>signal</h2>
+      <ul>
+        <li>
+          in ohm <i>everything is a <b>signal</b></i>
+        </li>
+        <li>a <i>signal</i> is a <b>stream</b> of numbers</li>
+        <li>
+          any expression produces a signal, i.e.:
+          <script type="text/ohm" inline static>
+            0
+          </script>
+        </li>
+        <li>
+          <script type="text/ohm" inline>
+            sin 220 * 0.2
+          </script>
+        </li>
+      </ul>
+      <p>no distinction between <b>audio</b>- and <b>control</b> signals:</p>
+      <script type="text/ohm">
+        // ring modulation
+        freq = ramp 0.15 ^ 3 * 100
+        voice 200 * sin freq
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>some uses for signals</h2>
+      <p>
+        <b>sound</b>
+        <script type="text/ohm">
+          voice 200 * 0.5
+        </script>
+      </p>
+      <p>
+        <b>parameter control</b>
+        <script type="text/ohm">
+          voice (200 + lfo 0.5 * 100)
+        </script>
+      </p>
+    </section>
+
+    <section class="slide">
+      <div>
+        <h2>3. logic / control flow</h2>
+        <ul>
+          <li>
+            <script type="text/ohm" inline static>
+              ==
+            </script>
+            ,
+            <script type="text/ohm" inline static>
+              !=
+            </script>
+            ,
+            <script type="text/ohm" inline static>
+              >
+            </script>
+            ,
+            <script type="text/ohm" inline static>
+              <
+            </script>
+            , etc.
+          </li>
+          <li>
+            <script type="text/ohm" inline static>
+              0
+            </script>
+            or nonzero
+          </li>
+          <li><b>generative</b> sequencing:</li>
+          <script type="text/ohm">
+            env = (sin 4 + sin 5) / 2 > 0
+            voice 200 * env * 0.5
+          </script>
+          <li><b>feedback</b> patches</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>4. signal-driven sequencing</h2>
+      <p>usually we sequence with discrete events (e.g. MIDI)</p>
+      <p>...and/or clock (pulse) signals</p>
+      <br \ />
+      <img src="assets/phasor/pulse.svg" alt="clock < 0.1" />
+    </section>
+
+    <section class="slide">
+      <h2>signal-driven sequencing</h2>
+      <ul>
+        <li>time as a slope / rate of change</li>
+        <li>musical time is cyclical (bars, beats, etc.)</li>
+        <li>continuous unipolar phasor signal (0..1)</li>
+        <li>
+          global ambient
+          <script type="text/ohm" inline static>
+            clock
+          </script>
+        </li>
+      </ul>
+      <img src="assets/phasor/clock.svg" alt="clock" />
+      <script type="text/ohm">
+        bpm = 120
+        clock
+      </script>
+    </section>
+
+    <section class="slide">
+      <div>
+        <center>
+          <img
+            src="assets/generating-sound-and-organizing-time.jpg"
+            alt="Generating Sound and Organizing Time"
+          />
+          <br \ />
+          <a href="https://cycling74.com/books/go" target="_blank"
+            >Generating Sound and Organizing Time</a
+          >
+        </center>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>signal-driven sequencing</h2>
+      <p>
+        reverse ramp / envelope:
+        <script type="text/ohm" inline static>
+          1 - clock
+        </script>
+      </p>
+      <img src="assets/phasor/reverse.svg" alt="clock" />
+      <script type="text/ohm">
+        env = 1 - clock
+        voice 200 * env
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>signal-driven sequencing</h2>
+      <p>
+        clock multiplication (
+        <script type="text/ohm" inline muted>
+          clock * 2 % 1
+        </script>
+        ) or division (
+        <script type="text/ohm" inline muted>
+          clock / 2
+        </script>
+        )
+      </p>
+      <div class="row">
+        <img src="assets/phasor/mul.svg" alt="clock multiplication" />
+        <img src="assets/phasor/div.svg" alt="clock division" />
+      </div>
+      <p>derive <b>polyrhythms</b> by fractional multiplication</p>
+      <script type="text/ohm">
+        env1 = 1 - clock
+        env2 = 1 - clock / 0.8
+        a = voice 200 * env1
+        b = voice 300 * env2
+        (a + b) * 0.5
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>signal-driven sequencing</h2>
+      <p>
+        <b>bend time</b> with non-linear ramp:
+        <script type="text/ohm" inline muted>
+          clock ^ 2
+        </script>
+      </p>
+      <div class="row">
+        <img src="assets/phasor/pow.svg" alt="bend expon" />
+        <img src="assets/phasor/sqrt.svg" alt="bend" />
+      </div>
+      <script type="text/ohm">
+        env = (1 - clock) ^ 8
+        voice 200 * env
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>signal-driven sequencing</h2>
+      <p>create (negative) <b>swing</b> with non-linear ramp</p>
+      <div class="row">
+        <img src="assets/phasor/pow-mul.svg" alt="swing" />
+        <img src="assets/phasor/sqrt-mul.svg" alt=" negative swing" />
+      </div>
+      <script type="text/ohm">
+        amt = 1.5
+        swing = (clock * 2) ^ amt * 2 % 1
+        env = 1 - swing
+        voice 200 * env
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>signal-driven sequencing</h2>
+      <p>
+        scrub/nudge/phase shift time forward or backward by adding or
+        subtracting:
+        <script type="text/ohm" inline muted>
+          clock + 0.25 % 1
+        </script>
+      </p>
+      <div class="row">
+        <img src="assets/phasor/shift.svg" alt="phase shift" />
+        <img src="assets/phasor/shift-back.svg" alt="backwards phase shift" />
+      </div>
+      <script type="text/ohm">
+        env1 = (1 - clock) ^ 2
+        amt = 0.25
+        env2 = (1 - (clock + amt) % 1) ^ 2
+        voice 200 * env1
+        voice 300 * env2
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>signal-driven sequencing</h2>
+      <p>
+        randomize/jitter time with noise source (e.g. pink noise<sup>*</sup>)
+      </p>
+      <div class="row">
+        <img src="assets/phasor/jitter.svg" alt="timing jitter" />
+        <img src="assets/phasor/jitter-pink.svg" alt="1/f noise" />
+      </div>
+      <script type="text/ohm">
+        drift = lp1 pink 0.0002 * 1.5
+        step = (clock * 8 + drift) % 1
+        env = (1 - step) ^ 3
+        voice 200 * env
+      </script>
+      <p class="footnote">
+        <sup>*</sup> Voss, Richard F. and John Clarke. “1/f noise in music:
+        Music from 1/f noise”, Journal of Acoustical Society of America, vol.
+        63, no. 1 (1978): 258-263.
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>
+        sequences:
+        <script type="text/ohm" inline static>
+          <...>
+        </script>
+      </h2>
+      <img src="assets/phasor/clock.svg" alt="clock" />
+      <script type="text/ohm">
+        clock -> <300 400 500> -> voice
+      </script>
+      <script type="text/ohm">
+        cutoff = <1000 200 2500> -> lp1
+        <300 400 500> -> voice -> lp cutoff
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>
+        sequences:
+        <script type="text/ohm" inline static>
+          <...>
+        </script>
+      </h2>
+      <p><b>nesting</b></p>
+      <script type="text/ohm">
+        voice <300 <400 500>>
+      </script>
+
+      <p><b>ties</b></p>
+      <script type="text/ohm">
+        voice <300 ~ <_ 500>>
+      </script>
+      <p>sequences can contain any expression:</p>
+      <script type="text/ohm">
+        voice <(lfo * 500) (lfo * 400)>
+      </script>
+      <p><b>ranges</b></p>
+      <script type="text/ohm">
+        voice <300 <400..500>>
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>
+        stacks:
+        <script type="text/ohm" inline static>
+          {...}
+        </script>
+      </h2>
+      <ul>
+        <li>polyphony</li>
+        <li>multichannel expansion</li>
+      </ul>
+
+      <script type="text/ohm">
+        voice {300 200} -> mix * 0.3
+      </script>
+      <p>
+        a <b>chord</b> is a stack:
+        <script type="text/ohm" inline>
+          voice Asus2 -> mix * 0.3
+        </script>
+      </p>
+
+      <p>
+        <b>stereo</b> output:
+        <script type="text/ohm" inline>
+          voice 200 -> pan (sin 0.25)
+        </script>
+      </p>
+
+      <p>
+        <b>destructuring</b>:
+        <script type="text/ohm" inline muted>
+          {l r} = voice 200 -> pan (sin 0.1)
+        </script>
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>
+        sequences / stacks:
+        <script type="text/ohm" inline static>
+          map
+        </script>
+      </h2>
+      <br \ />
+      <script type="text/ohm" inline static>
+        map = |seq f|
+      </script>
+      <script type="text/ohm">
+        map {300 400} |n| + 10
+      </script>
+      <p>
+        (equivalent to
+        <script type="text/ohm" inline muted>
+          {300 400} + 10
+        </script>
+        )
+      </p>
+      <script type="text/ohm">
+        map <300 400> |n| voice n * (1 - clock) ^ 2
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>stack / sequence: nesting</h2>
+      <p>stacks can be <b>nested</b> in sequences:</p>
+      <script type="text/ohm">
+        clock / 3 -> <Asus2 Fmaj7 Cmaj7> -> voice -> mix * 0.3
+      </script>
+      <p>...or vice versa:</p>
+      <script type="text/ohm">
+        voice {<a2 e2> <a4 c4 e4>} -> mix * 0.3
+      </script>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <h2>
+            feedback:
+            <script type="text/ohm" inline static>
+              ~
+            </script>
+          </h2>
+          <ul>
+            <li>i.e., recursion / cycles</li>
+            <li>counter: <code>x = ~x + 1</code></li>
+            <li>
+              IIR one pole filter:
+              <script type="text/ohm" inline static>
+                y = ~y + (x - ~y) * 0.001
+              </script>
+            </li>
+            <li><code>~x</code> is equivalent to <code>~x[1]</code></li>
+            <li><code>~x[n]</code> for arbitrary delays</li>
+            <li>
+              <code>n</code> can be fractional, .e.g: <code>~x[1.2]</code>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/worm.png" alt="ouroboros" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>
+        feedback:
+        <script type="text/ohm" inline static>
+          ~
+        </script>
+      </h2>
+      <h3>phase modulation synthesis (FM)</h3>
+      <script type="text/ohm" inline static>
+        sin = |freq phase_offset = 0|
+      </script>
+      <script type="text/ohm">
+        fb = lfo 0.25 * 0.4
+        x = sin 100 (~x * fb)
+        x * 0.4
+      </script>
+
+      <h3>cross-modulation</h3>
+      <script type="text/ohm">
+        fb = lfo 0.2 * 0.3
+        {root, third} = Am7
+        x = sin root (~y * fb)
+        y = sin third (~x * fb)
+        {x y} * 0.4
+      </script>
+    </section>
+
+    <section class="slide">
+      <h2>implementation</h2>
+      <br \ />
+      <img src="assets/stages/implementation.svg" alt="implementation" />
+      <br \ />
+      <script type="text/ohm" static>
+        saw {110 220} * 0.5 -> mix
+      </script>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <h2>lex</h2>
+          <br \ />
+          <script type="text/ohm" inline static>
+            saw {110 220} * 0.5 -> mix
+          </script>
+          <br \ />
+          <br \ />
+          <ul>
+            <li>turns raw text into a flat list of <b>tokens</b></li>
+            <li>
+              <code
+                >Num(f32) | Ident(String) | Arrow | LParen | Newline |
+                etc.</code
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/stages/lex.svg" alt="lexed tokens" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <h2>parse</h2>
+          <br \ />
+          <script type="text/ohm" inline static>
+            saw {110 220} * 0.5 -> mix
+          </script>
+          <br \ />
+          <br \ />
+          <ul>
+            <li>
+              parse tokens into an <b><i>Abstract Syntax Tree</i></b> (AST)
+            </li>
+            <li>AST node: <code>Assignment | Expression</code></li>
+            <ul>
+              <li>assignment: identifier + expression</li>
+              <li>
+                expression: <br \ />
+                <code>Number(f32) | Binary(Expr, Op, Expr) | etc.</code>
+              </li>
+            </ul>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/stages/parse.svg" alt="parsed AST" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <h2>resolve</h2>
+          <br \ />
+          <script type="text/ohm" inline static>
+            saw {110 220} * 0.5 -> mix
+          </script>
+          <br \ />
+          <br \ />
+          <ul>
+            <li>inline function calls (builtin or user-defined)</li>
+            <li><b>IR</b>: subset of AST (minus calls and bindings)</li>
+          </ul>
+        </div>
+        <img src="assets/stages/resolve.svg" alt="resolved IR" />
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <h2>expand</h2>
+          <br \ />
+          <script type="text/ohm" inline static>
+            saw {110 220} * 0.5 -> mix
+          </script>
+          <br \ />
+          <br \ />
+          <p>expands resolved IR into <b>multichannel representation</b></p>
+        </div>
+        <img src="assets/stages/expand.svg" alt="expanded IR" />
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <h2>compile</h2>
+          <br \ />
+          <script type="text/ohm" inline static>
+            saw {110 220} * 0.5 -> mix
+          </script>
+          <br \ />
+          <br \ />
+          <ul>
+            <li>
+              compile <b>expanded IR</b> into a flat list of <b>opcodes</b>
+            </li>
+            <li>postfix</li>
+          </ul>
+        </div>
+        <img src="assets/stages/compile.svg" alt="compiled opcodes" />
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="columns">
+        <div>
+          <h2>render</h2>
+          <br \ />
+          <script type="text/ohm" inline static>
+            saw {110 220} * 0.5 -> mix
+          </script>
+          <br \ />
+          <br \ />
+          <ul>
+            <li>virtual machine (VM)</li>
+            <ul>
+              <li>stack machine</li>
+            </ul>
+            <li>runs on audio thread</li>
+            <li>state slots</li>
+            <ul>
+              <li>e.g., oscillator phase</li>
+              <li>allows hot swapping</li>
+            </ul>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/vm.svg" alt="virtual machine" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="vm-trace"></div>
+      <script type="module" src="assets/vm-trace.js"></script>
+    </section>
+
+    <section class="slide">
+      <div>
+        <center>
+          <h2>thanks!</h2>
+          <img src="assets/qr.png" alt="compiled opcodes" />
+          <p>
+            <a href="https://cp3.io" target="_blank">https://cp3.io</a>
+          </p>
+        </center>
+      </div>
+    </section>
+
+    <p id="warning" hidden>
+      Playback needs a web server: <code>python3 -m http.server -d web</code>,
+      then open <code>localhost:8000/slides.html</code>
+    </p>
+
+    <nav>
+      <button type="button" id="prev" aria-label="previous slide">‹</button>
+      <span id="count"></span>
+      <button type="button" id="next" aria-label="next slide">›</button>
+    </nav>
+
+    <script>
+      // works without the engine, so the slides still show if ohm.js fails to load
+      let stop = () => {};
+      const warning = document.getElementById("warning");
+      if (location.protocol === "file:") {
+        warning.hidden = false;
+      } else {
+        import(`./ohm.js?${Date.now()}`) // skips the browser cache
+          .then(m => (stop = m.stop))
+          .catch(e => {
+            warning.textContent = `ohm.js failed to load: ${e.message}`;
+            warning.hidden = false;
+          });
+      }
+
+      const slides = [...document.querySelectorAll(".slide")];
+      const count = document.getElementById("count");
+      let index = 0;
+
+      function show(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        if (i !== index) stop();
+        index = i;
+        document.activeElement?.blur(); // focus would stay in a hidden editor
+        slides.forEach((s, j) => s.classList.toggle("current", j === index));
+        count.textContent = `${index + 1} / ${slides.length}`;
+        history.replaceState(null, "", `#${index + 1}`);
+      }
+
+      document.getElementById("prev").onclick = () => show(index - 1);
+      document.getElementById("next").onclick = () => show(index + 1);
+
+      document.addEventListener("keydown", e => {
+        if (e.target.closest("textarea") || e.target.isContentEditable) return;
+        if (e.key === "Escape") return stop();
+        if (e.key === "f")
+          return document.fullscreenElement
+            ? document.exitFullscreen()
+            : document.documentElement.requestFullscreen();
+        const step = {
+          ArrowRight: 1,
+          ArrowDown: 1,
+          PageDown: 1,
+          " ": 1,
+          ArrowLeft: -1,
+          ArrowUp: -1,
+          PageUp: -1,
+        }[e.key];
+        if (step) {
+          e.preventDefault();
+          show(index + step);
+        }
+      });
+
+      show(parseInt(location.hash.slice(1)) - 1 || 0);
+    </script>
+  </body>
+</html>

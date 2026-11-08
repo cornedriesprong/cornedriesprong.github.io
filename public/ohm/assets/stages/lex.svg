@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 159 654" width="159" height="654">
+<style>text{font:16px ui-monospace,"SF Mono",Menlo,monospace;fill:#1d1b18;text-anchor:middle;dominant-baseline:central}.edge{fill:#ed5d55;font-size:14px}.head{fill:#77716a;font-size:14px}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9d3c6"/></marker></defs>
+<rect x="10.0" y="10.0" width="139.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="27.0">Ident(&quot;saw&quot;)</text>
+<line x1="79.6" y1="44.0" x2="79.6" y2="70.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="38.8" y="70.0" width="81.6" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="87.0">LCurly</text>
+<line x1="79.6" y1="104.0" x2="79.6" y2="130.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="19.6" y="130.0" width="120.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="147.0">Num(110.0)</text>
+<line x1="79.6" y1="164.0" x2="79.6" y2="190.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="19.6" y="190.0" width="120.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="207.0">Num(220.0)</text>
+<line x1="79.6" y1="224.0" x2="79.6" y2="250.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="38.8" y="250.0" width="81.6" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="267.0">RCurly</text>
+<line x1="79.6" y1="284.0" x2="79.6" y2="310.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="29.2" y="310.0" width="100.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="327.0">Asterisk</text>
+<line x1="79.6" y1="344.0" x2="79.6" y2="370.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="29.2" y="370.0" width="100.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="387.0">Num(0.5)</text>
+<line x1="79.6" y1="404.0" x2="79.6" y2="430.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="43.6" y="430.0" width="72.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="447.0">Arrow</text>
+<line x1="79.6" y1="464.0" x2="79.6" y2="490.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="10.0" y="490.0" width="139.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="507.0">Ident(&quot;mix&quot;)</text>
+<line x1="79.6" y1="524.0" x2="79.6" y2="550.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="34.0" y="550.0" width="91.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="567.0">Newline</text>
+<line x1="79.6" y1="584.0" x2="79.6" y2="610.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="53.2" y="610.0" width="52.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="79.6" y="627.0">Eof</text>
+</svg>

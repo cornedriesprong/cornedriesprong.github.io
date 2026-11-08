@@ -1,23 +1,15 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
-import { SITE } from "./src/config";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://cp3.io",
-  integrations: [
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
-    react(),
-    sitemap(),
-  ],
+  // Keep Astro 2 scoping: component styles must not outrank Tailwind utilities.
+  scopedStyleStrategy: "where",
+  integrations: [react(), sitemap()],
   markdown: {
     remarkPlugins: [
       remarkToc,
@@ -32,7 +24,6 @@ export default defineConfig({
       theme: "one-dark-pro",
       wrap: true,
     },
-    extendDefaultPlugins: true,
   },
   vite: {
     optimizeDeps: {

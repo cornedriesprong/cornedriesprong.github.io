@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 682" width="207" height="682">
+<style>text{font:16px ui-monospace,"SF Mono",Menlo,monospace;fill:#1d1b18;text-anchor:middle;dominant-baseline:central}.edge{fill:#ed5d55;font-size:14px}.head{fill:#77716a;font-size:14px}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9d3c6"/></marker></defs>
+<text class="head" x="103.6" y="20.0">out 0</text>
+<rect x="43.6" y="38.0" width="120.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="55.0">Num(110.0)</text>
+<line x1="103.6" y1="72.0" x2="103.6" y2="98.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="53.2" y="98.0" width="100.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="115.0">Num(0.0)</text>
+<line x1="103.6" y1="132.0" x2="103.6" y2="158.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="58.0" y="158.0" width="91.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="175.0">Osc Saw</text>
+<line x1="103.6" y1="192.0" x2="103.6" y2="218.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="53.2" y="218.0" width="100.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="235.0">Num(0.5)</text>
+<line x1="103.6" y1="252.0" x2="103.6" y2="278.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="38.8" y="278.0" width="129.6" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="295.0">Binary(Mul)</text>
+<line x1="103.6" y1="312.0" x2="103.6" y2="338.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="43.6" y="338.0" width="120.0" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="355.0">Num(220.0)</text>
+<line x1="103.6" y1="372.0" x2="103.6" y2="398.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="53.2" y="398.0" width="100.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="415.0">Num(0.0)</text>
+<line x1="103.6" y1="432.0" x2="103.6" y2="458.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="58.0" y="458.0" width="91.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="475.0">Osc Saw</text>
+<line x1="103.6" y1="492.0" x2="103.6" y2="518.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="53.2" y="518.0" width="100.8" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="535.0">Num(0.5)</text>
+<line x1="103.6" y1="552.0" x2="103.6" y2="578.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="38.8" y="578.0" width="129.6" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="595.0">Binary(Mul)</text>
+<line x1="103.6" y1="612.0" x2="103.6" y2="638.0" stroke="#d9d3c6" marker-end="url(#arrow)"/>
+<rect x="10.0" y="638.0" width="187.2" height="34.0" fill="none" stroke="#d9d3c6"/>
+<text x="103.6" y="655.0">Mix { length: 2 }</text>
+</svg>
