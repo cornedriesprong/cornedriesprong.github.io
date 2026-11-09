@@ -107,21 +107,28 @@
     <section class="slide">
       <img src="assets/overview.svg" alt="overview" />
       <br \ />
-      <ul>
-        <li>programming language</li>
-        <li>runtime + virtual machine</li>
-        <ul>
-          <li>hot swapping / live editing</li>
-        </ul>
-        <li>
-          working with sound at the <b>sample level</b>: <br \ />
-          <script type="text/ohm" inline static>
-            y = ~y + (x - ~y) * 0.001
-          </script>
-        </li>
-        <li>declarative language for defining audio graphs</li>
-        <li>written in Rust 🦀</li>
-      </ul>
+      <div class="columns">
+        <div>
+          <ul>
+            <li>programming language</li>
+            <li>runtime + virtual machine</li>
+            <ul>
+              <li>hot swapping / live editing</li>
+            </ul>
+            <li>
+              working with sound at the <b>sample level</b>: <br \ />
+              <script type="text/ohm" inline static>
+                y = ~y + (x - ~y) * 0.001
+              </script>
+            </li>
+            <li>"declarative language for defining audio graphs"</li>
+            <li>written in Rust 🦀</li>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/vm.png" alt="Virtual Machine" />
+        </div>
+      </div>
     </section>
 
     <section class="slide">
@@ -565,6 +572,12 @@
           <...>
         </script>
       </h2>
+
+      <p><b>rests</b></p>
+      <script type="text/ohm">
+        voice <300 _ 500>
+      </script>
+
       <p><b>nesting</b></p>
       <script type="text/ohm">
         voice <300 <400 500>>
