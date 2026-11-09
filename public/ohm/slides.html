@@ -52,8 +52,11 @@
             <li>musicology</li>
             <li>self-taught</li>
             <li>iOS, web, C++, Rust</li>
-            <li>cykle / polybeat</li>
             <li>guitar / drums</li>
+            <li>
+              <a href="https://cp3.io/cykle/">cykle</a> /
+              <a href="https://cp3.io/polybeat/">polybeat</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -147,18 +150,18 @@
         k = 5
         d = floor (voss tick c * 5) + k * 4
         semi = floor (d / k) * 12 + floor (d % k * 12 / k) - 48
-        freq = 220 * 2 ^ (semi / 12)
+        freq = 220 * 1 ^ (semi / 12)
 
         mult = 2 ^ min (max (floor (voss tick c * 2 + 1)) 0) 2
         rate = 8 / mult
 
-        cutoff = 200 * 2 ^ ((voss tick c + 1) * 2.5)
+        cutoff = 1000 * 2 ^ ((voss tick c + 1) * 2.5)
 
         g = max tick (~g * (1 - rate / (sr * 0.5)))
         out = pluck freq tick 0.999 -> lp (50 + cutoff * g * g) * g * 0.5
 
         bus1 = out * 0.5 -> reverb
-        bus2 = out * 0.5 -> bbd
+        bus2 = out * 0.5 -> bbd 0.5 0.9
         out + bus1 + bus2
       </script>
     </section>
@@ -340,6 +343,12 @@
         <ul>
           <li>
             <script type="text/ohm" inline static>
+              0
+            </script>
+            or nonzero
+          </li>
+          <li>
+            <script type="text/ohm" inline static>
               ==
             </script>
             ,
@@ -355,12 +364,6 @@
               <
             </script>
             , etc.
-          </li>
-          <li>
-            <script type="text/ohm" inline static>
-              0
-            </script>
-            or nonzero
           </li>
           <li><b>generative</b> sequencing:</li>
           <script type="text/ohm">
@@ -383,8 +386,8 @@
       <h2>signal-driven sequencing</h2>
       <ul>
         <li>time as a slope / rate of change</li>
-        <li>musical time is cyclical (bars, beats, etc.)</li>
         <li>continuous unipolar phasor signal (0..1)</li>
+        <li>musical time is cyclical (bars, beats, etc.)</li>
         <li>
           global ambient
           <script type="text/ohm" inline static>
@@ -483,7 +486,7 @@
       </div>
       <script type="text/ohm">
         amt = 1.5
-        swing = (clock * 2) ^ amt * 2 % 1
+        swing = clock ^ amt * 2 % 1
         env = 1 - swing
         voice 200 * env
       </script>
@@ -537,7 +540,7 @@
       <h2>
         sequences:
         <script type="text/ohm" inline static>
-          <...>
+          <300 400 500>
         </script>
       </h2>
       <img src="assets/phasor/clock.svg" alt="clock" />
@@ -572,7 +575,7 @@
       <h2>
         stacks:
         <script type="text/ohm" inline static>
-          {...}
+          {300 200}
         </script>
       </h2>
       <ul>
@@ -614,7 +617,7 @@
       </h2>
       <br \ />
       <script type="text/ohm" inline static>
-        map = |seq f|
+        map = |seq/stack f|
       </script>
       <script type="text/ohm">
         map {300 400} |n| n + 10
@@ -708,7 +711,7 @@
       <br \ />
       <img src="assets/stages/implementation.svg" alt="implementation" />
       <br \ />
-      <script type="text/ohm" static>
+      <script type="text/ohm">
         saw {110 220} * 0.5 -> mix
       </script>
     </section>
@@ -718,7 +721,7 @@
         <div>
           <h2>1. lex</h2>
           <br \ />
-          <script type="text/ohm" inline static>
+          <script type="text/ohm" static>
             saw {110 220} * 0.5 -> mix
           </script>
           <br \ />
@@ -744,7 +747,7 @@
         <div>
           <h2>2. parse</h2>
           <br \ />
-          <script type="text/ohm" inline static>
+          <script type="text/ohm" static>
             saw {110 220} * 0.5 -> mix
           </script>
           <br \ />
@@ -774,7 +777,7 @@
         <div>
           <h2>3. resolve</h2>
           <br \ />
-          <script type="text/ohm" inline static>
+          <script type="text/ohm" static>
             saw {110 220} * 0.5 -> mix
           </script>
           <br \ />
@@ -793,7 +796,7 @@
         <div>
           <h2>4. expand</h2>
           <br \ />
-          <script type="text/ohm" inline static>
+          <script type="text/ohm" static>
             saw {110 220} * 0.5 -> mix
           </script>
           <br \ />
@@ -809,7 +812,7 @@
         <div>
           <h2>5. compile</h2>
           <br \ />
-          <script type="text/ohm" inline static>
+          <script type="text/ohm" static>
             saw {110 220} * 0.5 -> mix
           </script>
           <br \ />
@@ -830,7 +833,7 @@
         <div>
           <h2>6. render</h2>
           <br \ />
-          <script type="text/ohm" inline static>
+          <script type="text/ohm" static>
             saw {110 220} * 0.5 -> mix
           </script>
           <br \ />
