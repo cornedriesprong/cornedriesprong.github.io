@@ -1,0 +1,408 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Footer from "@components/Footer.astro";
+import socialIcons from "@assets/socialIcons";
+
+type Table = {
+  title: string;
+  head: string[];
+  rows: string[][];
+};
+
+// cells are HTML strings
+const c = (...names: string[]) =>
+  names.map(name => `<code>${name}</code>`).join(" ");
+
+const language: Table[] = [
+  {
+    title: "Oscillators",
+    head: ["name", "arguments", "output"],
+    rows: [
+      [
+        c("sin", "saw", "square", "tri"),
+        c("freq=100 phase=0"),
+        "-1..1, band-limited",
+      ],
+      [c("ramp"), c("freq=100 phase=0"), "0..1"],
+      [c("noise"), "", "white noise, -1..1"],
+    ],
+  },
+  {
+    title: "Filters",
+    head: ["name", "arguments", "output"],
+    rows: [
+      [
+        c("lp", "bp", "hp"),
+        c("in cutoff=1000 q=0.707"),
+        "state variable filter",
+      ],
+    ],
+  },
+  {
+    title: "Time",
+    head: ["name", "output"],
+    rows: [
+      [c("clock"), `0..1 ramp per bar. ${c("clock / n")} slows it down.`],
+      [c("bar"), "bar length in seconds"],
+      [c("sr"), "sample rate"],
+    ],
+  },
+  {
+    title: "Math",
+    head: ["name", "arguments"],
+    rows: [
+      [c("floor", "tanh", "abs"), c("x")],
+      [c("min", "max"), c("a b")],
+    ],
+  },
+  {
+    title: "Voices",
+    head: ["name", "arguments", "output"],
+    rows: [
+      [c("mix"), "any", "sums all voices into one"],
+      [c("map"), c("seq fn"), `applies ${c("fn")} to each item of a sequence`],
+      [
+        c("print"),
+        c("x"),
+        `prints ${c("x")} every sample and passes it through`,
+      ],
+    ],
+  },
+];
+
+const prelude: Table[] = [
+  {
+    title: "Generators",
+    head: ["name", "arguments", "output"],
+    rows: [
+      [c("lfo"), c("freq=0.1"), "sine, 0..1"],
+      [c("pm"), c("freq=100 fb=0.2"), "sine with phase feedback"],
+      [c("pink"), c("amp=1"), "pink noise"],
+      [c("pluck"), c("freq gate decay"), "Karplus-Strong plucked string"],
+      [c("voice"), c("freq cutoff=500"), "saw through a lowpass"],
+      [c("synth"), c("freq"), `${c("voice")} with a decay per bar`],
+      [c("voss"), c("tick c"), "1/f random, roughly -1..1"],
+    ],
+  },
+  {
+    title: "Effects",
+    head: ["name", "arguments", "output"],
+    rows: [
+      [c("lp1"), c("x coeff=0.001"), "one-pole lowpass"],
+      [c("avg"), c("x coeff=0.5"), "two-sample average"],
+      [c("comb"), c("x n g damp"), `damped feedback comb, ${c("n")} frames`],
+      [c("allpass"), c("x n"), `allpass filter, ${c("n")} frames`],
+      [c("rev"), c("in size=0.98 damp=0.2"), "stereo reverb"],
+      [
+        c("bbd"),
+        c("in division fb"),
+        `Bucket-brigade delay, ${c("division")} in bars`,
+      ],
+      [c("pan"), c("in pos=0"), "pan, -1 (left) to 1 (right)"],
+    ],
+  },
+  {
+    title: "Rhythm and pitch",
+    head: ["name", "arguments", "output"],
+    rows: [
+      [
+        c("bres"),
+        c("k n"),
+        `Bresenham algorithm: ${c("k")} hits spread over ${c("n")} steps per bar`,
+      ],
+      [c("hit"), c("k n"), `${c("bres")} with a decay envelope`],
+      [
+        c("scale"),
+        c("x k=7"),
+        `maps ${c("x")} to a frequency, ${c("k")} steps per octave`,
+      ],
+    ],
+  },
+];
+
+const qualities = [
+  "m",
+  "dim",
+  "aug",
+  "sus2",
+  "sus4",
+  "6",
+  "m6",
+  "7",
+  "maj7",
+  "m7",
+  "maj9",
+  "m9",
+  "11",
+  "m11",
+  "13",
+  "maj13",
+  "m13",
+];
+
+const code = String.raw`bpm = 180
+
+hit = |k n| bres k n * (1 - clock * n % 1) ^ 3
+
+kick = |k n| 
+  env = (hit k n) ^ 3
+  pm (env * 120) (lfo * 0.15) * env
+
+hat = |k n|
+  env = (hit k n) ^ 3 -> lp1 0.5
+  noise (lfo * 0.15) * env -> bp 500
+
+mod = lfo * 500 + 500
+n1 = <Cm Gm7> -> voice mod
+a = n1 * hit 5 8 * 0.5
+b = kick 3 8
+c = hat 7 16 * 0.2
+
+bus1 = a * 0.4 -> rev
+bus2 = a * 0.5 -> bbd 0.5 0.9
+
+{a b c bus1 bus2} -> mix`;
+
+const link =
+  "underline decoration-dashed underline-offset-4 hover:text-skin-accent";
+---
+
+<Layout pageTitle="ohm">
+  <main id="main-content">
+    <section id="hero">
+      <h1>
+        <i>ohm</i>
+      </h1>
+      <p>
+        <b>ohm</b> is a live coding language for music and sound.
+      </p>
+      <textarea
+        id="ohm-src"
+        spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off"
+        rows={code.split("\n").length + 2}
+        aria-label="ohm code editor"
+      >{code}</textarea>
+      <div class="flex flex-wrap items-center gap-y-2">
+        <button id="ohm-play" type="button">
+          play
+        </button>
+        <span class="ml-6 text-sm opacity-70">cmd/ctrl+enter to reload</span>
+        <pre id="ohm-log" class="ml-6 text-sm"></pre>
+      </div>
+      <div class="flex flex-wrap items-center gap-y-2 pt-4">
+        <a
+          href="https://github.com/cornedriesprong/ohm"
+          target="_blank"
+          title="ohm on GitHub"
+          class="group inline-flex items-center gap-1 hover:text-skin-accent"
+        >
+          <Fragment set:html={socialIcons.Github} />
+          <span class={link}>GitHub</span>
+        </a>
+        <span class="mx-4 opacity-50">|</span>
+        <a href="/ohm/slides.html" class={link}>
+          slides
+        </a>
+      </div>
+    </section>
+
+    <section id="docs" class="prose max-w-3xl">
+      <h2>Language</h2>
+      <p>
+        Set <code>bpm = 120</code> to change the global tempo.
+      </p>
+      {language.map(table => (
+        <>
+          <h3>{table.title}</h3>
+          <table>
+            <thead>
+              <tr>
+                {table.head.map(h => (
+                  <th>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {table.rows.map(row => (
+                <tr>
+                  {row.map(cell => (
+                    <td set:html={cell} />
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {table.title === "Time" && (
+            <p>
+              Set the tempo with <code>bpm = 180</code>. Default is 120.
+            </p>
+          )}
+          {table.title === "Math" && (
+            <p>
+              Operators: <code>+ - * / ^ %</code> and{" "}
+              <code>== != &gt; &lt; &gt;= &lt;=</code>. Comparisons return 0 or
+              1.
+            </p>
+          )}
+        </>
+      ))}
+
+      <h3>Pitches</h3>
+      <p>
+        Notes: <code>a4</code>, <code>c#3</code>, <code>eb5</code>.
+        <br />
+        Chords: <code>Am</code>, <code>F#m7</code>, <code>Bbmaj9</code>.
+        <br />
+        Qualities:{" "}
+        {qualities.map(q => (
+          <>
+            <code>{q}</code>{" "}
+          </>
+        ))}
+      </p>
+
+      <h2>Prelude</h2>
+      <p>
+        See <code>prelude.ohm</code>.
+      </p>
+      {prelude.map(table => (
+        <>
+          <h3>{table.title}</h3>
+          <table>
+            <thead>
+              <tr>
+                {table.head.map(h => (
+                  <th>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {table.rows.map(row => (
+                <tr>
+                  {row.map(cell => (
+                    <td set:html={cell} />
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      ))}
+    </section>
+    <br />
+  </main>
+  <Footer />
+
+  <script>
+    const src = document.getElementById("ohm-src") as HTMLTextAreaElement;
+    const play = document.getElementById("ohm-play") as HTMLButtonElement;
+    const log = document.getElementById("ohm-log") as HTMLElement;
+    let ctx: AudioContext | undefined;
+    let node: AudioWorkletNode | undefined;
+
+    const send = () =>
+      node?.port.postMessage({
+        src: new TextEncoder().encode(src.value),
+        fresh: false,
+      });
+
+    const fail = (message: string) => {
+      log.className = "ml-6 text-sm error";
+      log.textContent = message;
+    };
+
+    const start = async () => {
+      ctx = new AudioContext();
+      await ctx.audioWorklet.addModule("/ohm/ohm-worklet.js");
+      const module = await WebAssembly.compileStreaming(
+        fetch("/ohm/ohm_rs.wasm")
+      );
+      node = new AudioWorkletNode(ctx, "ohm", {
+        outputChannelCount: [2],
+        processorOptions: { module },
+      });
+      node.port.onmessage = ({ data }) => {
+        if (data.ok) {
+          log.className = "ml-6 text-sm";
+          log.textContent = "ok";
+        } else {
+          fail(new TextDecoder().decode(data.err));
+        }
+      };
+      node.onprocessorerror = () => fail("engine crashed, reload the page");
+      node.connect(ctx.destination);
+      send();
+    };
+
+    play.onclick = async () => {
+      try {
+        if (!ctx) await start();
+        else if (ctx.state === "running") await ctx.suspend();
+        else await ctx.resume();
+        play.textContent = ctx?.state === "running" ? "stop" : "play";
+      } catch (e) {
+        ctx = undefined;
+        fail(String(e));
+      }
+    };
+
+    src.onkeydown = e => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+        e.preventDefault();
+        send();
+      } else if (e.key === "Tab") {
+        e.preventDefault();
+        src.setRangeText("  ", src.selectionStart, src.selectionEnd, "end");
+      }
+    };
+  </script>
+
+  <style>
+    #ohm-src {
+      @apply mb-3 mt-6 block w-full rounded-xl border border-skin-line bg-skin-fill p-4 font-mono text-sm text-skin-base;
+      resize: vertical;
+      white-space: pre-wrap;
+      overflow: hidden auto;
+      scrollbar-width: none;
+    }
+    #ohm-src::-webkit-scrollbar {
+      display: none;
+      tab-size: 2;
+    }
+    #ohm-src:focus {
+      @apply border-skin-accent outline-none;
+    }
+    #ohm-play {
+      @apply rounded-lg border border-skin-line px-5 py-1 font-bold hover:border-skin-accent hover:text-skin-accent;
+    }
+    #ohm-log {
+      @apply m-0 whitespace-pre-wrap;
+    }
+    #ohm-log.error {
+      color: #f66;
+    }
+    #hero h1 {
+      @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    }
+    #hero p {
+      @apply my-2;
+    }
+    #docs {
+      @apply pt-8;
+    }
+    #docs th {
+      vertical-align: middle;
+      padding-top: 0.5714286em;
+      padding-bottom: 0.5714286em;
+    }
+    #docs code {
+      @apply whitespace-nowrap;
+    }
+    #docs pre code {
+      @apply whitespace-pre p-0;
+      background: transparent;
+    }
+  </style>
+</Layout>
