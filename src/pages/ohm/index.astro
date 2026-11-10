@@ -315,6 +315,10 @@ const link =
 
     const start = async () => {
       ctx = new AudioContext();
+      // the context starts asynchronously, so follow its state for the label
+      const label = () =>
+        (play.textContent = ctx?.state === "running" ? "stop" : "play");
+      ctx.onstatechange = label;
       await ctx.audioWorklet.addModule("/ohm/ohm-worklet.js");
       const module = await WebAssembly.compileStreaming(
         fetch("/ohm/ohm_rs.wasm")
@@ -326,7 +330,7 @@ const link =
       node.port.onmessage = ({ data }) => {
         if (data.ok) {
           log.className = "ml-6 text-sm";
-          log.textContent = "ok";
+          log.textContent = "";
         } else {
           fail(new TextDecoder().decode(data.err));
         }
@@ -334,6 +338,8 @@ const link =
       node.onprocessorerror = () => fail("engine crashed, reload the page");
       node.connect(ctx.destination);
       send();
+      await ctx.resume();
+      label();
     };
 
     play.onclick = async () => {
@@ -341,7 +347,6 @@ const link =
         if (!ctx) await start();
         else if (ctx.state === "running") await ctx.suspend();
         else await ctx.resume();
-        play.textContent = ctx?.state === "running" ? "stop" : "play";
       } catch (e) {
         ctx = undefined;
         fail(String(e));
