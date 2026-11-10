@@ -176,6 +176,9 @@ nav button {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
   text-align: right;
 }
+img[src$="vm.png"] {
+  width: 28em;
+}
 img[src$="cykle.png"] {
   width: 20em;
 }
