@@ -7,7 +7,6 @@ export const SITE: Site = {
   title: "cp3.io",
   ogImage: "cp3-og.jpg",
   lightAndDarkMode: true,
-  postPerPage: 3,
 };
 
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default

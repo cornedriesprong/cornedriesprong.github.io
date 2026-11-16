@@ -1,21 +1,18 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
+import getNotes, { byRecentlyUpdated } from "@utils/getNotes";
 import slugify from "@utils/slugify";
 import { SOCIALS } from "@config";
 
 import polybeat_screenshot from "../assets/polybeat_screenshot.jpg";
 import cykle_screenshot from "../assets/cykle_screenshot.jpg";
 
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
+const recentPages = byRecentlyUpdated(await getNotes()).slice(0, 4);
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
@@ -24,19 +21,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <main id="main-content">
     <section id="hero">
       <h1>cp3.io</h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="rss-link"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon">
-          <path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"></path>
-          <path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"></path>
-          <circle cx="6" cy="18" r="2"></circle>
-        </svg>
-      </a>
       <p>
         Hi 👋 My name is Corné. I work as a{" "}
         <a
@@ -77,23 +61,21 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       }
     </section>
 
-    <section id="recent-posts">
-      <p class="mt-4 mb-8 text-3xl font-bold">Posts</p>
+    <section id="notes">
+      <p class="mt-4 mb-8 text-3xl font-bold">Notes</p>
       <ul>
-        {sortedPosts.map(
-          ({ data }, index) =>
-            index < 4 && (
-              <Card
-                href={`/posts/${slugify(data)}`}
-                frontmatter={data}
-                secHeading={false}
-              />
-            )
-        )}
+        {recentPages.map(({ data, lastUpdated }) => (
+          <Card
+            href={`/notes/${slugify(data)}`}
+            frontmatter={data}
+            lastUpdated={lastUpdated}
+            secHeading={false}
+          />
+        ))}
       </ul>
-      <div class="all-posts-btn-wrapper">
-        <LinkButton href="/posts">
-          All Posts
+      <div class="all-notes-btn-wrapper">
+        <LinkButton href="/notes">
+          All Notes
           <svg xmlns="http://www.w3.org/2000/svg">
             <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
           </svg>
@@ -157,12 +139,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   #hero h1 {
     @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
   }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
   #hero p {
     @apply my-2;
   }
@@ -173,16 +149,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply mr-2 whitespace-nowrap sm:mb-0;
   }
 
-  /* ===== Featured & Recent Posts Sections ===== */
-  #featured,
-  #recent-posts {
+  /* ===== Notes Section ===== */
+  #notes {
     @apply pb-6 pt-12;
   }
-  #featured h2,
-  #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
-  }
-  .all-posts-btn-wrapper {
+  .all-notes-btn-wrapper {
     @apply my-8 text-center;
   }
 </style>

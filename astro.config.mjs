@@ -10,6 +10,13 @@ export default defineConfig({
   // Keep Astro 2 scoping: component styles must not outrank Tailwind utilities.
   scopedStyleStrategy: "where",
   integrations: [react(), sitemap()],
+  // The notes used to be blog posts under /posts.
+  redirects: {
+    "/posts": "/notes",
+    "/posts/1": "/notes",
+    "/posts/rust-on-ios": "/notes/rust-on-ios",
+    "/posts/sample-accurate-midi-timing": "/notes/sample-accurate-midi-timing",
+  },
   markdown: {
     remarkPlugins: [
       remarkToc,

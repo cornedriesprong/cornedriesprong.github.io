@@ -8,8 +8,8 @@ export const GET: APIRoute = async ({ params }) =>
   });
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return posts
+  const pages = await getCollection("notes", ({ data }) => !data.draft);
+  return pages
     .filter(({ data }) => !data.ogImage)
     .map(({ data }) => ({
       params: { ogTitle: data.title },

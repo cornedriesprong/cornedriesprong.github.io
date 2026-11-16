@@ -1,12 +1,15 @@
 ---
 author: Corné Driesprong
-pubDatetime: 2023-04-28T14:50:00Z
 title: Sample accurate MIDI timing in AUv3 plugins
 postSlug: sample-accurate-MIDI-timing
-featured: true
 draft: false
 tags:
-  - iOS, MIDI, Audio Unit, AUv3, sequencer, timing
+  - iOS
+  - MIDI
+  - Audio Unit
+  - AUv3
+  - sequencer
+  - timing
 ogImage: ""
 description: How to obtain sample accurate MIDI timing in the context of AUv3 plugins
 ---
@@ -221,10 +224,17 @@ double timestampInHostTicks = (sampleTime / sampleRateInKhz) * msToHostTicks;
 I hope that the above will be valuable for those interested in implementing precise timing in AUv3 plugins or apps. Keep in mind that a typical music-making session involves many Audio Unit-plugins working together, so every Audio Unit should be a good citizen and provide correctly timestamped MIDI events. For inquiries or feedback, feel free to reach out via email. The code referenced is available as an AUv3 extension within an Xcode project in in <a href="https://github.com/cornedriesprong/AUv3SequencerExample" target="_blank">this repository</a>.
 
 [^1]: Audio Unit version 3, a type of audio plugin by Apple that works cross-platform on Mac, iOS and iPadOS.
+
 [^2]: Refer to <a href="https://forum.audiob.us/discussion/46251/let-s-talk-about-midi-sequencer-timing" target="_blank">this thread on the AudioBus forum</a> for an overview of the plugin ecosystem regarding this issue.
+
 [^3]: The human ear is extremely sensitive to timing fluctuations. An non-timestamped MIDI event during audio playback with a buffer size of 256 with a sample rate of 48000 Hz results in a latency of up to 5~ ms which is already noticeable.
+
 [^4]: For an explanation of how to implement a MIDI AUv3 plugin, see <a href="https://ruismaker.com/au-midi-plugins/" target="_blank">Bram Bos' article on the subject</a>, and <a href="http://devnotes.kymatica.com/ios_midi_timestamps" target="_blank">Jonathan Liljedahl's article on iOS MIDI timestamps</a>.
+
 [^5]: Be prepared for your callback and timing calculations to handle all kinds of unusual buffer sizes, including ones that aren’t multiples of 64, 128, 256, etc. in case of sample rate conversion. Also, some hardware, such as Apple Airpods, are known to throw unusual buffer sizes at the audio system.
+
 [^6]: It is crucial not to allocate any memory on the on the audio thread. For an extended discussion of this subject, see Michael Tyson's article <a href="https://atastypixel.com/blog/four-common-mistakes-in-audio-development/" target="_blank">Four common mistakes in audio development</a>.
+
 [^7]: The <a href="https://github.com/cornedriesprong/AUv3SequencerExample" target="_blank">repo</a> contains an example of how to do this. Also, see <a href="https://atastypixel.com/blog/four-common-mistakes-in-audio-development/" target="_blank">Four common mistakes in audio development</a> for more in-depth information about the subject.
+
 [^8]: For example, at a sample rate of 48Khz, an offset of 48 samples equals one millisecond.

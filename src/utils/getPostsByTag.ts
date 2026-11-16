@@ -1,7 +1,7 @@
 import { slugifyAll } from "./slugify";
-import type { CollectionEntry } from "astro:content";
+import type { Note } from "./getNotes";
 
-const getPostsByTag = (posts: CollectionEntry<"blog">[], tag: string) =>
-  posts.filter(post => slugifyAll(post.data.tags).includes(tag));
+const getPostsByTag = (pages: Note[], tag: string) =>
+  pages.filter(page => slugifyAll(page.data.tags).includes(tag));
 
 export default getPostsByTag;

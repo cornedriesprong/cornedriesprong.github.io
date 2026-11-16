@@ -1,12 +1,10 @@
 import { z } from "astro/zod";
 
-export const blogSchema = z
+export const noteSchema = z
   .object({
     author: z.string().optional(),
-    pubDatetime: z.date(),
     title: z.string(),
     postSlug: z.string().optional(),
-    featured: z.boolean().optional(),
     draft: z.boolean().optional(),
     tags: z.array(z.string()).default(["others"]),
     ogImage: z.string().optional(),
@@ -14,4 +12,4 @@ export const blogSchema = z
   })
   .strict();
 
-export type BlogFrontmatter = z.infer<typeof blogSchema>;
+export type NoteFrontmatter = z.infer<typeof noteSchema>;

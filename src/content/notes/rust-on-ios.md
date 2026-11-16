@@ -1,12 +1,16 @@
 ---
 author: Corné Driesprong
-pubDatetime: 2023-12-10T18:52:00Z
 title: Using Rust in an iOS audio app
 postSlug: rust-on-ios
-featured: true
 draft: false
 tags:
-  - iOS, MacOS, Rust, C, C++, Swift, audio
+  - iOS
+  - MacOS
+  - Rust
+  - C
+  - C++
+  - Swift
+  - audio
 ogImage: ""
 description: My experiences using Rust in an iOS audio app
 ---
@@ -141,9 +145,15 @@ Because of the number of manual steps involved in getting Rust code to compile n
 Because of these downsides, I eventually decided to go back to C++ for my iOS/Mac audio development. This has little to do with Rust itself, but more with the tooling support for my specific use case. Xcode is still the only feasible IDE to develop iOS or Mac apps in, and it has first class support for C++ and none for Rust. Therefore, I found the experience to be lacking. I suppose this is less of a project if the work is split up between people or teams (working separately on Swift and Rust codebases), but in my case it's just really nice to be able to run and debug code across language boundaries. Despite these downsides, I still think Rust is a very promising language for audio development, and I'm looking forward to seeing how it evolves in the future.
 
 [^1]: Source: https://www.swift.org/server/
+
 [^2]: For a more in-depth review of the non-realtime safe aspects of Swift and Objective-C, see [Four Common Mistakes in Audio Development](https://atastypixel.com/four-common-mistakes-in-audio-development/).
+
 [^3]: Apple's developer documentation for writing Audio Units states: "_A class called FilterDSPKernel provides the plug-in’s digital signal processing (DSP) logic, and is written in C++ to ensure real-time safety_" ([source](https://developer.apple.com/documentation/audiotoolbox/audio_unit_v3_plug-ins/creating_custom_audio_effects)). See also [Is Swift really not performant enough for realtime audio?](https://forums.swift.org/t/is-swift-really-not-performant-enough-for-realtime-audio/65372).
+
 [^4]: For instance, at this year's Audio Developer Conference (2023) there have been a number of talks about using Rust for audio development. For a good introduction on the merits of Rust for audio development, check out this talk by Ian Hobson called [An introduction to Rust for audio developers](https://www.youtube.com/watch?v=Yom9E-67bdI&t=783s).
+
 [^5]: I should mention that Python is used quite a lot in audio programming contexts where realtime performance is not a requirement, but as a dynamic, interpreted, garbage-collected is not suitable for contexts where realtime performance is a requirement (arguably even less so than Swift).
+
 [^6]: Since we have to communicate between Rust and our app code via C functions, we can't use any of the object-oriented features of neither Rust or C++/Objective-C, which is why we're passing pointers around rather than calling methods on objects.
+
 [^9]: Rust's influence on Swift is mentioned by Swift's creator, Chris Lattner, on [his homepage](https://nondot.org/sabre/)

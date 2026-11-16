@@ -2,143 +2,41 @@
 import Layout from "@layouts/Layout.astro";
 import Footer from "@components/Footer.astro";
 import socialIcons from "@assets/socialIcons";
+import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 
-type Table = {
-  title: string;
-  head: string[];
-  rows: string[][];
-};
+// the docs are the ohm README, fetched and rendered when the site is built
+const README_URL =
+  "https://raw.githubusercontent.com/cornedriesprong/ohm/main/README.md";
+// sections of the README that don't belong on this page
+const SKIP_SECTIONS = ["Run"];
 
-// cells are HTML strings
-const c = (...names: string[]) =>
-  names.map(name => `<code>${name}</code>`).join(" ");
+const response = await fetch(README_URL);
+if (!response.ok) {
+  throw new Error(`could not fetch ${README_URL}: ${response.status}`);
+}
+const readme = await response.text();
 
-const language: Table[] = [
-  {
-    title: "Oscillators",
-    head: ["name", "arguments", "output"],
-    rows: [
-      [
-        c("sin", "saw", "square", "tri"),
-        c("freq=100 phase=0"),
-        "-1..1, band-limited",
-      ],
-      [c("ramp"), c("freq=100 phase=0"), "0..1"],
-      [c("noise"), "", "white noise, -1..1"],
-    ],
-  },
-  {
-    title: "Filters",
-    head: ["name", "arguments", "output"],
-    rows: [
-      [
-        c("lp", "bp", "hp"),
-        c("in cutoff=1000 q=0.707"),
-        "state variable filter",
-      ],
-    ],
-  },
-  {
-    title: "Time",
-    head: ["name", "output"],
-    rows: [
-      [c("clock"), `0..1 ramp per bar. ${c("clock / n")} slows it down.`],
-      [c("bar"), "bar length in seconds"],
-      [c("sr"), "sample rate"],
-    ],
-  },
-  {
-    title: "Math",
-    head: ["name", "arguments"],
-    rows: [
-      [c("floor", "tanh", "abs"), c("x")],
-      [c("min", "max"), c("a b")],
-    ],
-  },
-  {
-    title: "Voices",
-    head: ["name", "arguments", "output"],
-    rows: [
-      [c("mix"), "any", "sums all voices into one"],
-      [c("map"), c("seq fn"), `applies ${c("fn")} to each item of a sequence`],
-      [
-        c("print"),
-        c("x"),
-        `prints ${c("x")} every sample and passes it through`,
-      ],
-    ],
-  },
-];
+// the hero already has the title and tagline, so of the text above the first
+// section only callouts (> [!CAUTION] etc.) are kept
+const [intro, ...sections] = readme.split(/^(?=## )/m);
+const callouts = intro
+  .split(/\n{2,}/)
+  .filter(block => block.startsWith("> [!"))
+  .map(block =>
+    block.replace(
+      /^> \[!(\w)(\w*)\]\s*\n> /,
+      (_, first, rest) => `> **${first}${rest.toLowerCase()}:** `
+    )
+  );
+const markdown = [
+  ...callouts,
+  ...sections.filter(
+    section => !SKIP_SECTIONS.some(name => section.startsWith(`## ${name}\n`))
+  ),
+].join("\n\n");
 
-const prelude: Table[] = [
-  {
-    title: "Generators",
-    head: ["name", "arguments", "output"],
-    rows: [
-      [c("lfo"), c("freq=0.1"), "sine, 0..1"],
-      [c("pm"), c("freq=100 fb=0.2"), "sine with phase feedback"],
-      [c("pink"), c("amp=1"), "pink noise"],
-      [c("pluck"), c("freq gate decay"), "Karplus-Strong plucked string"],
-      [c("voice"), c("freq cutoff=500"), "saw through a lowpass"],
-      [c("synth"), c("freq"), `${c("voice")} with a decay per bar`],
-      [c("voss"), c("tick c"), "1/f random, roughly -1..1"],
-    ],
-  },
-  {
-    title: "Effects",
-    head: ["name", "arguments", "output"],
-    rows: [
-      [c("lp1"), c("x coeff=0.001"), "one-pole lowpass"],
-      [c("avg"), c("x coeff=0.5"), "two-sample average"],
-      [c("comb"), c("x n g damp"), `damped feedback comb, ${c("n")} frames`],
-      [c("allpass"), c("x n"), `allpass filter, ${c("n")} frames`],
-      [c("rev"), c("in size=0.98 damp=0.2"), "stereo reverb"],
-      [
-        c("bbd"),
-        c("in division fb"),
-        `Bucket-brigade delay, ${c("division")} in bars`,
-      ],
-      [c("pan"), c("in pos=0"), "pan, -1 (left) to 1 (right)"],
-    ],
-  },
-  {
-    title: "Rhythm and pitch",
-    head: ["name", "arguments", "output"],
-    rows: [
-      [
-        c("bres"),
-        c("k n"),
-        `Bresenham algorithm: ${c("k")} hits spread over ${c("n")} steps per bar`,
-      ],
-      [c("hit"), c("k n"), `${c("bres")} with a decay envelope`],
-      [
-        c("scale"),
-        c("x k=7"),
-        `maps ${c("x")} to a frequency, ${c("k")} steps per octave`,
-      ],
-    ],
-  },
-];
-
-const qualities = [
-  "m",
-  "dim",
-  "aug",
-  "sus2",
-  "sus4",
-  "6",
-  "m6",
-  "7",
-  "maj7",
-  "m7",
-  "maj9",
-  "m9",
-  "11",
-  "m11",
-  "13",
-  "maj13",
-  "m13",
-];
+const { render } = await createMarkdownProcessor();
+const { code: docs } = await render(markdown);
 
 const code = String.raw`bpm = 180
 
@@ -208,89 +106,7 @@ const link =
       </div>
     </section>
 
-    <section id="docs" class="prose max-w-3xl">
-      <h2>Language</h2>
-      <p>
-        Set <code>bpm = 120</code> to change the global tempo.
-      </p>
-      {language.map(table => (
-        <>
-          <h3>{table.title}</h3>
-          <table>
-            <thead>
-              <tr>
-                {table.head.map(h => (
-                  <th>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {table.rows.map(row => (
-                <tr>
-                  {row.map(cell => (
-                    <td set:html={cell} />
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {table.title === "Time" && (
-            <p>
-              Set the tempo with <code>bpm = 180</code>. Default is 120.
-            </p>
-          )}
-          {table.title === "Math" && (
-            <p>
-              Operators: <code>+ - * / ^ %</code> and{" "}
-              <code>== != &gt; &lt; &gt;= &lt;=</code>. Comparisons return 0 or
-              1.
-            </p>
-          )}
-        </>
-      ))}
-
-      <h3>Pitches</h3>
-      <p>
-        Notes: <code>a4</code>, <code>c#3</code>, <code>eb5</code>.
-        <br />
-        Chords: <code>Am</code>, <code>F#m7</code>, <code>Bbmaj9</code>.
-        <br />
-        Qualities:{" "}
-        {qualities.map(q => (
-          <>
-            <code>{q}</code>{" "}
-          </>
-        ))}
-      </p>
-
-      <h2>Prelude</h2>
-      <p>
-        See <code>prelude.ohm</code>.
-      </p>
-      {prelude.map(table => (
-        <>
-          <h3>{table.title}</h3>
-          <table>
-            <thead>
-              <tr>
-                {table.head.map(h => (
-                  <th>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {table.rows.map(row => (
-                <tr>
-                  {row.map(cell => (
-                    <td set:html={cell} />
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      ))}
-    </section>
+    <section id="docs" class="prose max-w-3xl" set:html={docs} />
     <br />
   </main>
   <Footer />
@@ -371,10 +187,10 @@ const link =
       white-space: pre-wrap;
       overflow: hidden auto;
       scrollbar-width: none;
+      tab-size: 2;
     }
     #ohm-src::-webkit-scrollbar {
       display: none;
-      tab-size: 2;
     }
     #ohm-src:focus {
       @apply border-skin-accent outline-none;
@@ -397,15 +213,16 @@ const link =
     #docs {
       @apply pt-8;
     }
-    #docs th {
+    /* the docs are injected html, so these can't be scoped */
+    #docs :global(th) {
       vertical-align: middle;
       padding-top: 0.5714286em;
       padding-bottom: 0.5714286em;
     }
-    #docs code {
+    #docs :global(code) {
       @apply whitespace-nowrap;
     }
-    #docs pre code {
+    #docs :global(pre code) {
       @apply whitespace-pre p-0;
       background: transparent;
     }

@@ -1,14 +1,20 @@
 import Datetime from "./Datetime";
-import type { BlogFrontmatter } from "@content/_schemas";
+import type { NoteFrontmatter } from "@content/_schemas";
 
 export interface Props {
   href?: string;
-  frontmatter: BlogFrontmatter;
+  frontmatter: NoteFrontmatter;
+  lastUpdated?: string | Date;
   secHeading?: boolean;
 }
 
-export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, description } = frontmatter;
+export default function Card({
+  href,
+  frontmatter,
+  lastUpdated,
+  secHeading = true,
+}: Props) {
+  const { title, description } = frontmatter;
   return (
     <li className="my-6">
       <a
@@ -25,7 +31,7 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
           </h3>
         )}
       </a>
-      <Datetime datetime={pubDatetime} />
+      {lastUpdated && <Datetime datetime={lastUpdated} />}
       <p>{description}</p>
     </li>
   );

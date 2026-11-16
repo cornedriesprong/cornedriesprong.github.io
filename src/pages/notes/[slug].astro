@@ -1,0 +1,21 @@
+---
+import NoteDetails from "@layouts/NoteDetails.astro";
+import getNotes, { type Note } from "@utils/getNotes";
+import slugify from "@utils/slugify";
+
+export interface Props {
+  page: Note;
+}
+
+export async function getStaticPaths() {
+  const pages = await getNotes();
+  return pages.map(page => ({
+    params: { slug: slugify(page.data) },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<NoteDetails page={page} />
