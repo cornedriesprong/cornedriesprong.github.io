@@ -40,8 +40,6 @@ const { code: docs } = await render(markdown);
 
 const code = String.raw`bpm = 180
 
-hit = |k n| bres k n * (1 - clock * n % 1) ^ 3
-
 kick = |k n| 
   env = (hit k n) ^ 3
   pm (env * 120) (lfo * 0.15) * env
@@ -73,6 +71,12 @@ const link =
       </h1>
       <p>
         <b>ohm</b> is a live coding language for music and sound.
+      </p>
+      <p>
+        it's a live coding system consisting of a domain-specific programming
+        language and a hot-swapping runtime, so you can hear your changes as you
+        type. it is designed to scale all the way from high-level music-making
+        (notes, rhythms, chords) down to low-level DSP prototyping.
       </p>
       <textarea
         id="ohm-src"
