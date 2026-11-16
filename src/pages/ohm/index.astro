@@ -7,9 +7,6 @@ import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 // the docs are the ohm README, fetched and rendered when the site is built
 const README_URL =
   "https://raw.githubusercontent.com/cornedriesprong/ohm/main/README.md";
-// sections of the README that don't belong on this page
-const SKIP_SECTIONS = ["Run"];
-
 const response = await fetch(README_URL);
 if (!response.ok) {
   throw new Error(`could not fetch ${README_URL}: ${response.status}`);
@@ -28,12 +25,7 @@ const callouts = intro
       (_, first, rest) => `> **${first}${rest.toLowerCase()}:** `
     )
   );
-const markdown = [
-  ...callouts,
-  ...sections.filter(
-    section => !SKIP_SECTIONS.some(name => section.startsWith(`## ${name}\n`))
-  ),
-].join("\n\n");
+const markdown = [...callouts, ...sections].join("\n\n");
 
 const { render } = await createMarkdownProcessor();
 const { code: docs } = await render(markdown);
@@ -78,6 +70,10 @@ const link =
         type. it is designed to scale all the way from high-level music-making
         (notes, rhythms, chords) down to low-level DSP prototyping.
       </p>
+      <br />
+      <p>
+        <b>example code</b>
+      </p>
       <textarea
         id="ohm-src"
         spellcheck="false"
@@ -93,6 +89,7 @@ const link =
         <span class="ml-6 text-sm opacity-70">cmd/ctrl+enter to reload</span>
         <pre id="ohm-log" class="ml-6 text-sm"></pre>
       </div>
+      <br />
       <div class="flex flex-wrap items-center gap-y-2 pt-4">
         <a
           href="https://github.com/cornedriesprong/ohm"
