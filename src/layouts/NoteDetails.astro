@@ -6,6 +6,7 @@ import Tag from "@components/Tag.astro";
 import Datetime from "@components/Datetime";
 import { render } from "astro:content";
 import type { Note } from "@utils/getNotes";
+import "katex/dist/katex.min.css";
 
 export interface Props {
   page: Note;
