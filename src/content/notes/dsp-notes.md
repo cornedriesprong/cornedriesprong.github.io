@@ -7,7 +7,7 @@ tags:
   - DSP
   - audio
 ogImage: ""
-description: My notes as I learn about the theory of digital signal processing
+description: Study notes while learning about digital signal processing
 ---
 
 ## Signals / sinusoids
