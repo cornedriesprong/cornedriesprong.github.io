@@ -223,6 +223,18 @@ const link =
     #docs :global(code) {
       @apply whitespace-nowrap;
     }
+    /* in light mode, plain (indented / plaintext) code blocks have no syntax
+       colors, so they get a light background instead of shiki's always-dark
+       inline one (!important to beat the inline style). dark mode keeps
+       shiki's dark background. */
+    :global(html:not([data-theme="dark"]))
+      #docs
+      :global(pre:not([data-language])),
+    :global(html:not([data-theme="dark"]))
+      #docs
+      :global(pre[data-language="plaintext"]) {
+      @apply !bg-skin-card !bg-opacity-75 !text-skin-base;
+    }
     #docs :global(pre code) {
       @apply whitespace-pre p-0;
       background: transparent;
